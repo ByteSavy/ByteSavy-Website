@@ -1,26 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+/* ByteSavy theme - ONLY use these colors */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-primary: #185BCE;
+  --color-dark-bg: #0A1A33;
+  --color-accent-1: #27E3FF;
+  --color-accent-2: #A5D4FF;
+  --color-text-light: #FFFFFF;
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--color-dark-bg);
+  --color-foreground: var(--color-text-light);
+  --color-primary: #185BCE;
+  --color-accent-1: #27E3FF;
+  --color-accent-2: #A5D4FF;
+  --font-sans: var(--font-primary);
+  --font-mono: var(--font-secondary);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-dark-bg);
+  color: var(--color-text-light);
+  font-family: var(--font-primary);
+}
+
+#fluidglass {
+  background-color: #ffffff;
+}
+
+/* Hide FluidGlass ScrollControls scrollbar - keep scroll functionality */
+#fluidglass [style*="overflow-y"],
+#fluidglass [style*="overflow-x"],
+#fluidglass [style*="overflow"] {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+#fluidglass [style*="overflow-y"]::-webkit-scrollbar,
+#fluidglass [style*="overflow-x"]::-webkit-scrollbar,
+#fluidglass [style*="overflow"]::-webkit-scrollbar {
+  display: none;
 }

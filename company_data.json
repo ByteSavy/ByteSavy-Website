@@ -1,0 +1,248 @@
+{
+    "company": {
+      "legal_name": "ByteSavy",
+      "brand_name": "ByteSavy",
+      "tagline": "Code. Map. Innovate.",
+      "one_liner": "Mapping innovation. Coding intelligence. Driving impact.",
+      "founded_year": 2023,
+      "industry": "Technology, Information and Internet",
+      "company_size": {
+        "range": "11-50",
+        "employees_estimate": null
+      },
+      "business_model": ["B2B", "Consulting", "SaaS"],
+      "workplace_model": "Hybrid",
+      "growth_stage": "Early-stage, scaling toward enterprise and government projects",
+      "vision": "To become a leading global GIS and AI solutions company, enabling organizations to harness spatial intelligence and innovate at scale.",
+      "mission": "To empower organizations with intelligent GIS, AI, and software solutions that transform spatial data into actionable insights."
+    },
+  
+    "branding": {
+      "logo": {
+        "available": true,
+        "variations": ["Primary", "Dark Background", "Light Background"],
+        "usage_guidelines": "Maintain sufficient white space and ensure contrast on dark backgrounds."
+      },
+      "color_palette": {
+        "primary": {
+          "name": "Primary Blue",
+          "hex": "#185BCE",
+          "usage": "Buttons, links, highlights, key sections"
+        },
+        "dark_background": {
+          "name": "Dark Navy",
+          "hex": "#0A1A33",
+          "usage": "Main background, footer, hero sections"
+        },
+        "accent_1": {
+          "name": "Cyan Accent",
+          "hex": "#27E3FF",
+          "usage": "Hover effects, highlights, gradients"
+        },
+        "accent_2": {
+          "name": "Soft Sky",
+          "hex": "#A5D4FF",
+          "usage": "Subtle backgrounds, cards"
+        },
+        "text_light": {
+          "name": "White",
+          "hex": "#FFFFFF",
+          "usage": "Primary text on dark backgrounds"
+        }
+      },
+      "typography": {
+        "primary_font": "Poppins",
+        "secondary_font": "Inter",
+        "heading_style": "Bold, modern, clean",
+        "body_style": "Professional, readable, tech-focused"
+      },
+      "brand_personality": [
+        "Innovative",
+        "Precise",
+        "Data-driven",
+        "Strategic",
+        "Scalable",
+        "Global"
+      ]
+    },
+  
+    "location": {
+      "country": "Pakistan",
+      "city": "Islamabad",
+      "region": "Federal Capital",
+      "headquarters": {
+        "address_line": "NSTP, National University of Sciences and Technology (NUST), H-12",
+        "postal_code": "44000",
+        "city": "Islamabad",
+        "country": "Pakistan"
+      }
+    },
+  
+    "contact": {
+      "website": "https://www.bytesavy.tech",
+      "phone": "+923323588111",
+      "linkedin_associated_members": 3,
+      "email": null
+    },
+  
+    "about": {
+      "overview": "ByteSavy is a technology-driven software and consulting company specializing in GIS, AI, and custom software solutions. We empower organizations to transform spatial data into actionable intelligence through interactive GIS platforms, AI-powered analytics, and scalable web and mobile applications.",
+      "extended_description": "Founded in 2023, ByteSavy delivers high-impact geospatial and AI solutions to businesses, governments, and research institutions worldwide. Our multidisciplinary team of GIS analysts, AI engineers, and full-stack developers collaborates closely with clients to build intelligent, scalable, and future-ready systems.",
+      "core_focus": [
+        "Spatial Intelligence",
+        "Artificial Intelligence",
+        "Custom Software Engineering",
+        "Enterprise GIS Platforms",
+        "Scalable Digital Transformation"
+      ]
+    },
+  
+    "services": {
+      "primary_services": [
+        {
+          "name": "Custom GIS & Mapping Software",
+          "description": "Development of interactive GIS platforms, mapping dashboards, spatial data management systems, and enterprise geospatial applications.",
+          "category": "GIS Development"
+        },
+        {
+          "name": "AI & Geospatial Analytics",
+          "description": "Machine learning and AI models integrated with spatial datasets for predictive insights, classification, optimization, and decision support systems.",
+          "category": "Artificial Intelligence"
+        },
+        {
+          "name": "Remote Sensing & Satellite Image Analysis",
+          "description": "Processing and analysis of satellite imagery for land use, environmental monitoring, urban planning, and resource management.",
+          "category": "Remote Sensing"
+        },
+        {
+          "name": "Web & Mobile Application Development",
+          "description": "Full-stack development of scalable web applications and cross-platform mobile solutions.",
+          "category": "Software Development"
+        },
+        {
+          "name": "GIS & AI Consulting",
+          "description": "Technical advisory, system architecture planning, digital transformation consulting, and solution implementation strategy.",
+          "category": "Consulting"
+        }
+      ],
+      "specializations": [
+        "GIS Software Development",
+        "AI-driven Geospatial Analytics",
+        "Satellite Image Processing",
+        "SaaS Platform Development",
+        "Full-stack Web Development",
+        "Mobile App Engineering",
+        "Project Planning & Technical Consulting"
+      ]
+    },
+  
+    "technical_capabilities": {
+      "domains": [
+        "Geospatial Intelligence",
+        "Artificial Intelligence",
+        "Data Science",
+        "Spatial Data Engineering",
+        "Cloud-based GIS",
+        "API Development"
+      ],
+      "solution_types": [
+        "Interactive GIS Dashboards",
+        "AI Prediction Models",
+        "SaaS Applications",
+        "Enterprise Systems",
+        "Government-scale Platforms"
+      ],
+      "target_sectors": [
+        "Government",
+        "Enterprises",
+        "Research Institutions",
+        "Private Sector",
+        "International Clients"
+      ]
+    },
+  
+    "team": {
+      "structure": [
+        "GIS Analysts",
+        "GIS Engineers",
+        "AI Engineers",
+        "Full-stack Developers",
+        "Consultants"
+      ],
+      "collaboration_style": "Client-centered, agile, and solution-oriented",
+      "culture_values": [
+        "Innovation",
+        "Precision",
+        "Continuous Learning",
+        "Scalability",
+        "Impact"
+      ]
+    },
+  
+    "work_culture": {
+      "work_model": "Hybrid",
+      "on_site_requirement": "Flexible",
+      "learning_and_growth": {
+        "description": "Continuous skill development through hands-on projects, mentorship, and real-world challenges.",
+        "programs": [
+          "Diverse project exposure",
+          "Skill development through real-world challenges",
+          "Learning new technologies",
+          "Problem-solving opportunities",
+          "Collaborative team projects"
+        ]
+      },
+      "work_life_balance": {
+        "description": "Flexible working hours and remote work options, with strong emphasis on well-being and productivity.",
+        "benefits": [
+          "Flexible Working Hours",
+          "Remote Working Options"
+        ]
+      }
+    },
+  
+    "positioning": {
+      "market_position": "Emerging global GIS & AI solutions provider",
+      "competitive_advantages": [
+        "Specialized GIS + AI expertise",
+        "Scalable architecture design",
+        "Direct international client experience",
+        "Government-level project ambition",
+        "Hybrid and agile delivery model"
+      ],
+      "differentiators": [
+        "Spatial intelligence combined with AI innovation",
+        "Full-stack in-house technical capabilities",
+        "End-to-end project ownership",
+        "Enterprise-grade scalability mindset"
+      ]
+    },
+  
+    "future_goals": {
+      "short_term": [
+        "Expand international client base",
+        "Secure government-level contracts",
+        "Launch SaaS-based GIS platform"
+      ],
+      "long_term": [
+        "Become a global GIS and AI leader",
+        "Develop proprietary AI-powered spatial products",
+        "Establish enterprise partnerships worldwide"
+      ]
+    },
+  
+    "seo_metadata": {
+      "keywords": [
+        "GIS software development Pakistan",
+        "AI geospatial analytics",
+        "Remote sensing solutions",
+        "Custom mapping software",
+        "Spatial intelligence company",
+        "AI GIS consulting",
+        "Web GIS development",
+        "Enterprise GIS platforms"
+      ],
+      "meta_description": "ByteSavy is a technology-driven GIS and AI company delivering custom geospatial software, AI analytics, remote sensing solutions, and scalable web & mobile applications worldwide."
+    }
+  }
+  
