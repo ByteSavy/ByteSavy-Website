@@ -15,9 +15,22 @@ import {
 } from '@react-three/drei';
 import { easing } from 'maath';
 
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' && window.innerWidth < 768);
+  useEffect(() => {
+    const mq = matchMedia('(max-width: 767px)');
+    const fn = () => setIsMobile(mq.matches);
+    mq.addEventListener('change', fn);
+    fn();
+    return () => mq.removeEventListener('change', fn);
+  }, []);
+  return isMobile;
+};
+
 export default function FluidGlass({ mode = 'lens', lensProps = {}, barProps = {}, cubeProps = {} }) {
   const Wrapper = mode === 'bar' ? Bar : mode === 'cube' ? Cube : Lens;
   const rawOverrides = mode === 'bar' ? barProps : mode === 'cube' ? cubeProps : lensProps;
+  const isMobile = useIsMobile();
 
   const {
     navItems = [
@@ -35,6 +48,9 @@ export default function FluidGlass({ mode = 'lens', lensProps = {}, barProps = {
     gl.forceContextLoss = null;
     gl.toneMapping = THREE.NoToneMapping;
     gl.outputColorSpace = THREE.SRGBColorSpace;
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      canvas.style.touchAction = 'pan-y';
+    }
   };
 
   return (
@@ -42,15 +58,23 @@ export default function FluidGlass({ mode = 'lens', lensProps = {}, barProps = {
       camera={{ position: [0, 0, 20], fov: 15 }}
       gl={{
         alpha: false,
-        powerPreference: 'default',
-        failIfMajorPerformanceCaveat: false
+        powerPreference: isMobile ? 'low-power' : 'default',
+        failIfMajorPerformanceCaveat: false,
+        antialias: !isMobile,
+        stencil: true
       }}
+      dpr={isMobile ? [1, 1.5] : [1, 2]}
       onCreated={handleCreated}
-      style={{ background: 'transparent' }}
+      style={{ background: 'transparent', touchAction: 'pan-y' }}
     >
-      <ScrollControls damping={0.2} pages={3} distance={0.4}>
+      <ScrollControls
+        damping={isMobile ? 0.15 : 0.2}
+        pages={isMobile ? 2.5 : 3}
+        distance={0.4}
+        enabled
+      >
         {mode === 'bar' && <NavItems items={navItems} />}
-        <Wrapper modeProps={modeProps}>
+        <Wrapper modeProps={modeProps} followPointer={!isMobile}>
           <Scroll>
             <Typography />
             <Images />
@@ -129,15 +153,15 @@ const ModeWrapper = memo(function ModeWrapper({
   );
 });
 
-function Lens({ modeProps, ...p }) {
-  return <ModeWrapper glb="/assets/3d/lens.glb" geometryKey="Cylinder" followPointer modeProps={modeProps} {...p} />;
+function Lens({ modeProps, followPointer = true, ...p }) {
+  return <ModeWrapper glb="/assets/3d/lens.glb" geometryKey="Cylinder" followPointer={followPointer} modeProps={modeProps} {...p} />;
 }
 
-function Cube({ modeProps, ...p }) {
-  return <ModeWrapper glb="/assets/3d/cube.glb" geometryKey="Cube" followPointer modeProps={modeProps} {...p} />;
+function Cube({ modeProps, followPointer = true, ...p }) {
+  return <ModeWrapper glb="/assets/3d/cube.glb" geometryKey="Cube" followPointer={followPointer} modeProps={modeProps} {...p} />;
 }
 
-function Bar({ modeProps = {}, ...p }) {
+function Bar({ modeProps = {}, followPointer: _omit, ...p }) {
   const defaultMat = {
     transmission: 1,
     roughness: 0,
@@ -240,20 +264,20 @@ function Images() {
     group.current.children[0].material.zoom = 1 + data.range(0, 1 / 3) / 3;
     group.current.children[1].material.zoom = 1 + data.range(0, 1 / 3) / 3;
     group.current.children[2].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2;
-    
-    // group.current.children[3].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2;
-    // group.current.children[4].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2;
+    group.current.children[3].material.zoom = 1 + data.range(2.15 / 3, 1 / 3) / 2;
+    group.current.children[4].material.zoom = 1 + data.range(2.15 / 3, 1 / 3) / 2;
   });
 
   return (
     <group ref={group}>
+      {/* Row 1 */}
       <Image position={[-2, 0, 0]} scale={[5, height / 1.1, 1]} url="/assets/demo/earth.png" />
-      {/* <Image position={[2, 0, 3]} scale={[3, 3, 3]} url="/assets/demo/earth.png" /> */}
+      {/* Row 2 */}
       <Image position={[-2.05, -height, 6]} scale={[2.6, 2.6, 1]} url="/assets/demo/csp4.jpg" />
-      {/* <Image position={[-0.6, -height, 9]} scale={[1.9, 2, 1]} url="/assets/demo/csp3.jpeg" /> */}
-      
       <Image position={[0.75, -height, 10.5]} scale={[2.5, 2.2, 2.2]} url="/assets/demo/csp2.jpg" />
-    
+      {/* Row 3 – same two images, positions swapped; same scales as row 2 (left slot [2.6,2.6,1], right slot [2.5,2.2,2.2]) */}
+      <Image position={[0.75, -height * 2, 10.5]} scale={[2.5, 2.5, 1]} url="/assets/demo/row3-2.png" />
+      <Image position={[-2.05, -height * 2, 6]} scale={[2.4, 2.1, 2.1]} url="/assets/demo/row3-1.png" />
 
     </group>
   );
@@ -261,9 +285,9 @@ function Images() {
 
 function Typography() {
   const DEVICE = {
-    mobile: { fontSize: 0.2 },
-    tablet: { fontSize: 0.4 },
-    desktop: { fontSize: 0.6 }
+    mobile: { fontSize: 0.08, maxWidth: 0.85 },
+    tablet: { fontSize: 0.18, maxWidth: 0.9 },
+    desktop: { fontSize: 0.5, maxWidth: 1 }
   };
   const getDevice = () => {
     const w = window.innerWidth;
@@ -278,23 +302,24 @@ function Typography() {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  const { fontSize } = DEVICE[device];
+  const { fontSize, maxWidth } = DEVICE[device];
 
   return (
     <Text
       position={[0, 0, 12]}
       fontSize={fontSize}
-      letterSpacing={-0.05}
-      outlineWidth={0}
-      outlineBlur="20%"
-      outlineColor="#000"
-      outlineOpacity={0.5}
-      color="white"
+      maxWidth={maxWidth}
       anchorX="center"
       anchorY="middle"
+      textAlign="center"
+      letterSpacing={-0.02}
+      outlineWidth={0}
+      outlineBlur="15%"
+      outlineColor="#000"
+      outlineOpacity={0.4}
+      color="white"
     >
       GeoAI Solutions
     </Text>
-    
   );
 }

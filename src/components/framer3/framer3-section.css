@@ -1,0 +1,48 @@
+/* Scoped to .framer3-section – images 1100×1650 (aspect 2/3), full display, responsive */
+
+.framer3-section {
+  user-select: none;
+}
+
+.framer3-section .framer3-grid,
+.framer3-section.grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150%;
+  height: 150%;
+  display: grid;
+  gap: 0.25rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: auto;
+}
+
+.framer3-section .framer3-grid > div,
+.framer3-section.grid > div {
+  position: relative;
+  aspect-ratio: 1100 / 1650;
+  min-height: 0;
+}
+
+.framer3-section figure {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .framer3-section .framer3-grid,
+  .framer3-section.grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.35rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .framer3-section .framer3-grid,
+  .framer3-section.grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.4rem;
+  }
+}

@@ -1,0 +1,138 @@
+/* Scoped to .framer4-section – mobile responsive */
+
+.framer4-section .dom-gl {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.framer4-section .framer4-slider,
+.framer4-section.slider {
+  position: absolute;
+  inset: 0;
+  padding: 0 8vw;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  cursor: grab;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+@media (min-width: 640px) {
+  .framer4-section .framer4-slider,
+  .framer4-section.slider {
+    padding: 0 15vw;
+  }
+}
+
+@media (min-width: 1024px) {
+  .framer4-section .framer4-slider,
+  .framer4-section.slider {
+    padding: 0 22.5vw;
+  }
+}
+
+.framer4-section .framer4-slider__inner {
+  display: flex;
+  position: relative;
+}
+
+.framer4-section .framer4-slide {
+  overflow: hidden;
+}
+
+.framer4-section .framer4-slide:first-child {
+  position: relative;
+}
+
+.framer4-section .framer4-slide:not(:first-child) {
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+
+.framer4-section .framer4-slide__inner {
+  position: relative;
+  overflow: hidden;
+  width: 78vw;
+  padding-top: 56.25%;
+}
+
+@media (min-width: 640px) {
+  .framer4-section .framer4-slide__inner {
+    width: 65vw;
+    padding-top: 56.25%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .framer4-section .framer4-slide__inner {
+    width: 55vw;
+    padding-top: 56.5%;
+  }
+}
+
+.framer4-section .framer4-slide__inner img {
+  display: none;
+}
+
+.framer4-section .framer4-titles {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.framer4-section .framer4-titles__list {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.framer4-section .framer4-titles__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.25rem, 6vw, 4rem);
+  font-weight: bold;
+  letter-spacing: -0.1vw;
+  color: #fff;
+}
+
+.framer4-section .framer4-titles__title--proxy {
+  visibility: hidden;
+}
+
+.framer4-section .framer4-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.25rem;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.framer4-section .framer4-progress__line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background-color: #fff;
+}
+
+.framer4-section .framer4-progress__line:nth-child(2) {
+  transform-origin: right;
+}

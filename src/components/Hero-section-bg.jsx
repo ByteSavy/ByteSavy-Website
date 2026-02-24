@@ -176,13 +176,31 @@ const GridDistortion = ({
       vY: 0
     };
 
-    const handleMouseMove = e => {
+    const updateFromClientCoords = (clientX, clientY) => {
       const rect = container.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = 1 - (e.clientY - rect.top) / rect.height;
+      const x = (clientX - rect.left) / rect.width;
+      const y = 1 - (clientY - rect.top) / rect.height;
       mouseState.vX = x - mouseState.prevX;
       mouseState.vY = y - mouseState.prevY;
       Object.assign(mouseState, { x, y, prevX: x, prevY: y });
+    };
+
+    const handleMouseMove = e => {
+      updateFromClientCoords(e.clientX, e.clientY);
+    };
+
+    const handleTouchMove = e => {
+      if (e.touches.length > 0) {
+        const t = e.touches[0];
+        updateFromClientCoords(t.clientX, t.clientY);
+      }
+    };
+
+    const handleTouchStart = e => {
+      if (e.touches.length > 0) {
+        const t = e.touches[0];
+        updateFromClientCoords(t.clientX, t.clientY);
+      }
     };
 
     const handleMouseLeave = () => {
@@ -199,8 +217,16 @@ const GridDistortion = ({
       });
     };
 
+    const handleTouchEnd = () => {
+      handleMouseLeave();
+    };
+
     container.addEventListener('mousemove', handleMouseMove);
     container.addEventListener('mouseleave', handleMouseLeave);
+    container.addEventListener('touchstart', handleTouchStart, { passive: true });
+    container.addEventListener('touchmove', handleTouchMove, { passive: true });
+    container.addEventListener('touchend', handleTouchEnd, { passive: true });
+    container.addEventListener('touchcancel', handleTouchEnd, { passive: true });
 
     handleResize();
 
@@ -266,6 +292,10 @@ const GridDistortion = ({
 
       container.removeEventListener('mousemove', handleMouseMove);
       container.removeEventListener('mouseleave', handleMouseLeave);
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchmove', handleTouchMove);
+      container.removeEventListener('touchend', handleTouchEnd);
+      container.removeEventListener('touchcancel', handleTouchEnd);
 
       if (renderer) {
         renderer.dispose();

@@ -23,18 +23,46 @@
 }
 
 html {
-  scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  -webkit-overflow-scrolling: touch;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   background: var(--color-dark-bg);
   color: var(--color-text-light);
   font-family: var(--font-primary);
+  min-height: 100dvh;
+  overflow-x: hidden;
 }
 
+/* Safe area for notched devices */
+@supports (padding: env(safe-area-inset-top)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Scroll snap: only when near Framer4/FluidGlass/rest. Hero/Framer1/Framer3 stay put (proximity). */
+#framer4 {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  scroll-margin: 0;
+}
 #fluidglass {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  scroll-margin: 0;
   background-color: #ffffff;
+  touch-action: pan-y;
+}
+#after-fluidglass {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  scroll-margin: 0;
 }
 
 /* Hide FluidGlass ScrollControls scrollbar - keep scroll functionality */

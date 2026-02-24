@@ -90,11 +90,10 @@ function MenuItem({ link, text, image, speed, textColor, marqueeBgColor, marquee
     };
   }, [text, image, repetitions, speed]);
 
-  const handleMouseEnter = ev => {
+  const showMarquee = (clientX, clientY) => {
     if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current) return;
     const rect = itemRef.current.getBoundingClientRect();
-    const edge = findClosestEdge(ev.clientX - rect.left, ev.clientY - rect.top, rect.width, rect.height);
-
+    const edge = findClosestEdge(clientX - rect.left, clientY - rect.top, rect.width, rect.height);
     gsap
       .timeline({ defaults: animationDefaults })
       .set(marqueeRef.current, { y: edge === 'top' ? '-101%' : '101%' }, 0)
@@ -102,28 +101,44 @@ function MenuItem({ link, text, image, speed, textColor, marqueeBgColor, marquee
       .to([marqueeRef.current, marqueeInnerRef.current], { y: '0%' }, 0);
   };
 
-  const handleMouseLeave = ev => {
+  const hideMarquee = (clientX, clientY) => {
     if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current) return;
     const rect = itemRef.current.getBoundingClientRect();
-    const edge = findClosestEdge(ev.clientX - rect.left, ev.clientY - rect.top, rect.width, rect.height);
-
+    const edge = findClosestEdge(clientX - rect.left, clientY - rect.top, rect.width, rect.height);
     gsap
       .timeline({ defaults: animationDefaults })
       .to(marqueeRef.current, { y: edge === 'top' ? '-101%' : '101%' }, 0)
       .to(marqueeInnerRef.current, { y: edge === 'top' ? '101%' : '-101%' }, 0);
   };
 
+  const handleMouseEnter = ev => showMarquee(ev.clientX, ev.clientY);
+  const handleMouseLeave = (ev) => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) return;
+    hideMarquee(ev.clientX, ev.clientY);
+  };
+
+  const handleTouchStart = (ev) => {
+    if (ev.touches?.[0]) showMarquee(ev.touches[0].clientX, ev.touches[0].clientY);
+  };
+  const handleTouchEnd = (ev) => {
+    const x = ev.changedTouches?.[0]?.clientX ?? 0;
+    const y = ev.changedTouches?.[0]?.clientY ?? 0;
+    setTimeout(() => hideMarquee(x, y), 800);
+  };
+
   return (
     <div
-      className="flex-1 relative overflow-hidden text-center"
+      className="flex-1 relative overflow-hidden text-center min-h-0"
       ref={itemRef}
       style={{ borderTop: isFirst ? 'none' : `1px solid ${borderColor}` }}
     >
       <a
-        className="flex items-center justify-center h-full relative cursor-pointer uppercase no-underline font-semibold text-[4vh]"
+        className="flex items-center justify-center h-full relative cursor-pointer uppercase no-underline font-semibold text-[clamp(1rem,4vh,2rem)] sm:text-[3vh] md:text-[4vh] min-h-[48px] touch-manipulation px-2"
         href={link}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
         style={{ color: textColor }}
       >
         {text}
@@ -133,12 +148,12 @@ function MenuItem({ link, text, image, speed, textColor, marqueeBgColor, marquee
         ref={marqueeRef}
         style={{ backgroundColor: marqueeBgColor }}
       >
-        <div className="h-full w-fit flex" ref={marqueeInnerRef}>
+        <div className="h-full w-fit flex items-center" ref={marqueeInnerRef}>
           {[...Array(repetitions)].map((_, idx) => (
             <div className="marquee-part flex items-center flex-shrink-0" key={idx} style={{ color: marqueeTextColor }}>
-              <span className="whitespace-nowrap uppercase font-normal text-[4vh] leading-[1] px-[1vw]">{text}</span>
+              <span className="whitespace-nowrap uppercase font-normal text-[clamp(0.875rem,3vh,1.5rem)] sm:text-[3vh] md:text-[4vh] leading-[1] px-2 sm:px-[1vw]">{text}</span>
               <div
-                className="w-[200px] h-[7vh] my-[2em] mx-[2vw] py-[1em] rounded-[50px] bg-cover bg-center"
+                className="w-[120px] h-[5vh] sm:w-[160px] sm:h-[6vh] md:w-[200px] md:h-[7vh] my-4 sm:my-[2em] mx-2 sm:mx-[2vw] py-2 sm:py-[1em] rounded-[30px] sm:rounded-[50px] bg-cover bg-center flex-shrink-0"
                 style={{ backgroundImage: `url(${image})` }}
               />
             </div>
