@@ -1,16 +1,35 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, type ComponentType } from 'react';
 import dynamic from 'next/dynamic';
 import { colors } from '@/lib/theme';
 import { menuItems, socialItems, navItems } from '@/lib/nav-config';
 import { company, branding, services, technicalCapabilities, contact } from '@/lib/company-data';
+import type { StaggeredMenuProps } from '@/components/mobile-navbar';
+
+type RotatingTextProps = {
+  texts: string[];
+  rotationInterval?: number;
+  mainClassName?: string;
+  splitLevelClassName?: string;
+  elementLevelClassName?: string;
+};
 
 const CardNav = dynamic(() => import('@/components/navbar'), { ssr: false });
-const StaggeredMenu = dynamic(() => import('@/components/mobile-navbar'), { ssr: false });
+const StaggeredMenu = dynamic<StaggeredMenuProps>(
+  () =>
+    import('@/components/mobile-navbar').then((mod) => ({
+      default: mod.StaggeredMenu as ComponentType<StaggeredMenuProps>,
+    })),
+  { ssr: false }
+);
 const Aurora = dynamic(() => import('@/components/Aurora'), { ssr: false });
 const GridDistortion = dynamic(() => import('@/components/Hero-section-bg'), { ssr: false });
-const RotatingText = dynamic(() => import('@/components/rotating-text'), { ssr: false });
+const RotatingText = dynamic<RotatingTextProps>(
+  () =>
+    import('@/components/rotating-text').then((mod) => mod.default as ComponentType<RotatingTextProps>),
+  { ssr: false }
+);
 const CountUp = dynamic(() => import('@/components/count-up'), { ssr: false });
 const FlowingMenu = dynamic(() => import('@/components/services'), { ssr: false });
 const MagicBento = dynamic(() => import('@/components/magicbento'), { ssr: false });
@@ -125,9 +144,9 @@ export default function Home() {
           <div className="absolute inset-0 z-[1] w-full h-full pointer-events-none">
             {showHeroEffects && (
               <Aurora
-                colorStops={[colors.primary, colors.accent1, colors.accent2]}
-                amplitude={0.3}
-                blend={0.3}
+                color={colors.primary}
+                className="w-full h-full"
+                style={{}}
               />
             )}
           </div>
