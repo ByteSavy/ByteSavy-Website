@@ -1,0 +1,807 @@
+/* =========================================================
+   ByteSavy Footer – Complete Redesign
+   Matches the Snappy-style layout from the reference image
+   ========================================================= */
+
+/* ---------- Shared container ---------- */
+.bs-footer {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    color: #0A1A33;
+    background: #fff;
+}
+
+.bs-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 28px;
+}
+
+/* ==========================================================
+   CONTACT US SECTION
+   ========================================================== */
+.bs-contact-section {
+    background: #EEF3FB;
+    padding: 80px 0 72px;
+}
+
+.bs-contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: flex-start;
+}
+
+/* ---- Left ---- */
+.bs-contact-heading {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 800;
+    color: #0A1A33;
+    line-height: 1.15;
+    margin: 0 0 14px;
+    letter-spacing: -0.02em;
+}
+
+.bs-contact-sub {
+    font-size: 0.95rem;
+    color: #4a5568;
+    margin: 0 0 18px;
+    max-width: 380px;
+    line-height: 1.6;
+}
+
+.bs-contact-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 32px;
+}
+
+.bs-contact-link {
+    font-size: 0.9rem;
+    color: #185BCE;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.15s;
+}
+
+.bs-contact-link:hover {
+    opacity: 0.75;
+}
+
+.bs-contact-categories {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+}
+
+/* .bs-contact-category – no extra styles needed */
+
+.bs-cat-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #0A1A33;
+    margin: 0 0 4px;
+}
+
+.bs-cat-desc {
+    font-size: 0.75rem;
+    color: #6b7280;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.bs-cat-link {
+    color: #185BCE;
+    text-decoration: none;
+}
+
+.bs-cat-link:hover {
+    text-decoration: underline;
+}
+
+/* ---- Right – form card ---- */
+.bs-contact-right {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.bs-form-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 32px 28px 24px;
+    box-shadow: 0 4px 28px rgba(24, 91, 206, 0.10), 0 1px 4px rgba(0, 0, 0, 0.06);
+    width: 100%;
+    max-width: 420px;
+}
+
+.bs-form-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0A1A33;
+    margin: 0 0 4px;
+}
+
+.bs-form-sub {
+    font-size: 0.82rem;
+    color: #9ca3af;
+    margin: 0 0 20px;
+}
+
+.bs-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.bs-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.bs-form-group {
+    position: relative;
+    width: 100%;
+}
+
+.bs-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 9px;
+    font-size: 0.88rem;
+    color: #0A1A33;
+    background: #f9fafb;
+    outline: none;
+    transition: border-color 0.18s, box-shadow 0.18s;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.bs-input:focus {
+    border-color: #185BCE;
+    box-shadow: 0 0 0 3px rgba(24, 91, 206, 0.1);
+    background: #fff;
+}
+
+.bs-input-icon-wrap {
+    position: relative;
+}
+
+.bs-input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    color: #9ca3af;
+    pointer-events: none;
+}
+
+.bs-input-with-icon {
+    padding-left: 34px;
+}
+
+.bs-textarea {
+    resize: none;
+    min-height: 80px;
+}
+
+.bs-submit-btn {
+    width: 100%;
+    padding: 11px;
+    background: #185BCE;
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.18s, transform 0.13s;
+    font-family: inherit;
+    letter-spacing: 0.01em;
+}
+
+.bs-submit-btn:hover {
+    background: #1349a3;
+    transform: translateY(-1px);
+}
+
+.bs-submit-btn:active {
+    transform: translateY(0);
+}
+
+.bs-form-legal {
+    font-size: 0.72rem;
+    color: #9ca3af;
+    text-align: center;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.bs-form-legal-link {
+    color: #185BCE;
+    text-decoration: none;
+}
+
+.bs-form-legal-link:hover {
+    text-decoration: underline;
+}
+
+.bs-form-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    gap: 12px;
+    color: #185BCE;
+}
+
+.bs-form-success-icon {
+    width: 48px;
+    height: 48px;
+    background: #185BCE;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+/* ==========================================================
+   LOCATION SECTION
+   ========================================================== */
+.bs-location-section {
+    background: #fff;
+    padding: 80px 0 72px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.bs-location-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 56px;
+    align-items: center;
+}
+
+.bs-map-wrap {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(10, 26, 51, 0.08);
+    height: 300px;
+    border: 1.5px solid #eaeaea;
+}
+
+.bs-map-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+.bs-location-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #185BCE;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+}
+
+.bs-location-heading {
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 800;
+    color: #0A1A33;
+    margin: 0 0 28px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.bs-location-block {
+    margin-bottom: 22px;
+}
+
+.bs-location-block-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #0A1A33;
+    margin: 0 0 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.bs-location-block-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0A1A33;
+    margin: 0 0 4px;
+}
+
+.bs-location-block-addr {
+    font-size: 0.88rem;
+    color: #6b7280;
+    line-height: 1.65;
+    margin: 0;
+}
+
+.bs-map-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #185BCE;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1.5px solid #185BCE;
+    border-radius: 8px;
+    transition: background 0.18s, color 0.18s;
+}
+
+.bs-map-link:hover {
+    background: #185BCE;
+    color: #fff;
+}
+
+/* ==========================================================
+   FAQ SECTION
+   ========================================================== */
+.bs-faq-section {
+    background: #f8fafc;
+    padding: 80px 0 72px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.bs-faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 56px;
+    align-items: flex-start;
+}
+
+.bs-faq-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #185BCE;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0 0 12px;
+}
+
+.bs-faq-heading {
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 800;
+    color: #0A1A33;
+    margin: 0 0 14px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.bs-faq-sub {
+    font-size: 0.88rem;
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0 0 28px;
+}
+
+.bs-faq-email-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.bs-faq-email-input-wrap {
+    position: relative;
+    flex: 1;
+}
+
+.bs-faq-email-icon {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.85rem;
+    color: #9ca3af;
+    pointer-events: none;
+}
+
+.bs-faq-email-input {
+    width: 100%;
+    padding: 9px 12px 9px 32px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #0A1A33;
+    outline: none;
+    transition: border-color 0.18s;
+    font-family: inherit;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+.bs-faq-email-input:focus {
+    border-color: #185BCE;
+    box-shadow: 0 0 0 3px rgba(24, 91, 206, 0.1);
+}
+
+.bs-faq-submit-btn {
+    padding: 9px 20px;
+    background: #185BCE;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s, transform 0.12s;
+    white-space: nowrap;
+}
+
+.bs-faq-submit-btn:hover {
+    background: #1349a3;
+    transform: translateY(-1px);
+}
+
+/* --- Accordion --- */
+.bs-faq-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.bs-faq-item {
+    border-bottom: 1.5px solid #e5e7eb;
+    overflow: hidden;
+    transition: background 0.15s;
+}
+
+.bs-faq-item:first-child {
+    border-top: 1.5px solid #e5e7eb;
+}
+
+.bs-faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0A1A33;
+    gap: 16px;
+    transition: color 0.15s;
+}
+
+.bs-faq-question:hover {
+    color: #185BCE;
+}
+
+.bs-faq-chevron {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #9ca3af;
+    flex-shrink: 0;
+    transition: color 0.15s, transform 0.2s;
+    line-height: 1;
+}
+
+.bs-faq-item--open .bs-faq-chevron {
+    color: #185BCE;
+}
+
+.bs-faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1), padding 0.2s;
+    padding: 0 4px;
+}
+
+.bs-faq-item--open .bs-faq-answer {
+    max-height: 300px;
+    padding: 0 4px 16px;
+}
+
+.bs-faq-answer p {
+    font-size: 0.88rem;
+    color: #6b7280;
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* ==========================================================
+   CTA BANNER
+   ========================================================== */
+.bs-cta-section {
+    position: relative;
+    background: linear-gradient(135deg, #0A1A33 0%, #185BCE 50%, #1349a3 100%);
+    padding: 90px 28px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.bs-cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.bs-cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 26, 51, 0.45);
+}
+
+.bs-cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.bs-cta-heading {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 32px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+
+.bs-cta-btns {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.bs-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.18s;
+    font-family: inherit;
+}
+
+.bs-cta-btn--primary {
+    background: #fff;
+    color: #185BCE;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.bs-cta-btn--primary:hover {
+    background: #f0f5ff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.bs-cta-btn--ghost {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(6px);
+}
+
+.bs-cta-btn--ghost:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================
+   BOTTOM FOOTER BAR
+   ========================================================== */
+.bs-footer-bar {
+    background: #fff;
+    border-top: 1.5px solid #eaeded;
+}
+
+.bs-footer-bar-inner {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 48px;
+    align-items: flex-start;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.bs-footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.bs-footer-logo {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+}
+
+.bs-store-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bs-store-badge {
+    display: block;
+    text-decoration: none;
+    border: 1.5px solid #d1d5db;
+    border-radius: 10px;
+    padding: 7px 14px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.bs-store-badge:hover {
+    border-color: #185BCE;
+    box-shadow: 0 2px 10px rgba(24, 91, 206, 0.12);
+}
+
+.bs-badge-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bs-badge-icon {
+    font-size: 1.3rem;
+    color: #0A1A33;
+}
+
+.bs-badge-sub {
+    display: block;
+    font-size: 0.65rem;
+    color: #9ca3af;
+    line-height: 1;
+}
+
+.bs-badge-main {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #0A1A33;
+    line-height: 1.3;
+}
+
+/* Link columns */
+.bs-footer-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.bs-footer-col-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #0A1A33;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 12px;
+}
+
+.bs-footer-col-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bs-footer-col-list a,
+.bs-footer-col-list Link {
+    font-size: 0.85rem;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.bs-footer-col-list a:hover,
+.bs-footer-col-list Link:hover {
+    color: #185BCE;
+}
+
+/* Copyright bar */
+.bs-footer-copy {
+    border-top: 1px solid #f0f0f0;
+    padding: 18px 0;
+}
+
+.bs-footer-copy p {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    text-align: center;
+    margin: 0;
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (max-width: 900px) {
+
+    .bs-contact-grid,
+    .bs-location-grid,
+    .bs-faq-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .bs-contact-right {
+        justify-content: flex-start;
+    }
+
+    .bs-contact-categories {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bs-form-card {
+        max-width: 100%;
+    }
+
+    .bs-footer-bar-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .bs-footer-cols {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .bs-contact-section,
+    .bs-location-section,
+    .bs-faq-section {
+        padding: 52px 0 44px;
+    }
+
+    .bs-contact-categories {
+        grid-template-columns: 1fr;
+    }
+
+    .bs-footer-cols {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .bs-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .bs-faq-email-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .bs-cta-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bs-cta-btn {
+        width: 100%;
+        max-width: 260px;
+        justify-content: center;
+    }
+
+    .bs-store-badges {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

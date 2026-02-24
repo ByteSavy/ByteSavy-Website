@@ -53,6 +53,7 @@ void main(){
 precision mediump float;
 uniform vec2 u_res;
 uniform vec2 u_size;
+uniform float u_loaded;
 uniform sampler2D u_texture;
 vec2 cover(vec2 screenSize, vec2 imageSize, vec2 uv) {
   float screenRatio = screenSize.x / screenSize.y;
@@ -67,6 +68,10 @@ vec2 cover(vec2 screenSize, vec2 imageSize, vec2 uv) {
 }
 varying vec2 vUv;
 void main() {
+  if (u_loaded < 0.5) {
+    gl_FragColor = vec4(1.0, 1.0, 1.0, 0.0);
+    return;
+  }
   vec2 uv = vUv;
   vec2 uvCover = cover(u_res, u_size, uv);
   vec4 texture = texture2D(u_texture, uvCover);
@@ -89,6 +94,7 @@ void main() {
         u_res: { value: new THREE.Vector2(1, 1) },
         u_size: { value: new THREE.Vector2(1, 1) },
         u_diff: { value: 0 },
+        u_loaded: { value: 0 },
       };
       this.texture = loader.load(this.el.dataset.src, (texture) => {
         texture.minFilter = THREE.LinearFilter;
@@ -96,15 +102,17 @@ void main() {
         const { naturalWidth, naturalHeight } = texture.image;
         this.material.uniforms.u_texture.value = texture;
         this.material.uniforms.u_size.value.set(naturalWidth, naturalHeight);
+        this.material.uniforms.u_loaded.value = 1;
       });
       this.mesh = new THREE.Mesh(this.geometry, this.material);
       this.add(this.mesh);
+      this.position.z = -i * 0.001;
       this.resize();
     }
-    update = (x, y, max, diff) => {
-      const { right, bottom } = this.rect;
+    update = (x, y, max, diff, yRange) => {
+      const { right } = this.rect;
       this.material.uniforms.u_diff.value = diff;
-      this.y = gsap.utils.wrap(-(max.y - bottom), bottom, y * this.my) - this.yOffset;
+      this.y = this.yOffset + gsap.utils.wrap(-yRange, yRange, y * this.my);
       this.x = gsap.utils.wrap(-(max.x - right), right, x) - this.xOffset;
       this.position.x = this.x;
       this.position.y = this.y;
@@ -157,7 +165,7 @@ void main() {
     cy += yDiff * 0.085;
     cy = Math.round(cy * 100) / 100;
     diff = Math.max(Math.abs(yDiff * 0.0001), Math.abs(xDiff * 0.0001));
-    planeInstances.forEach((p) => p.update(cx, cy, max, diff));
+    planeInstances.forEach((p) => p.update(cx, cy, max, diff, gridYRange));
     renderer.render(scene, camera);
   };
 
@@ -183,13 +191,18 @@ void main() {
     ty -= dy;
   };
 
+  let gridYRange = 0;
   const resize = () => {
     ww = container.clientWidth || window.innerWidth;
     wh = container.clientHeight || window.innerHeight;
     if (ww <= 0 || wh <= 0) return;
     const rect = gridEl.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
     max.x = rect.right;
     max.y = rect.bottom;
+    const gridTopC = rect.top - (containerRect.top + wh / 2);
+    const gridBottomC = rect.bottom - (containerRect.top + wh / 2);
+    gridYRange = (gridBottomC - gridTopC) * 0.5;
     camera.left = ww / -2;
     camera.right = ww / 2;
     camera.top = wh / 2;
@@ -204,13 +217,12 @@ void main() {
     if (!tickActive) return;
     tickActive = false;
     gsap.ticker.remove(tick);
-    if (renderer.domElement.style) renderer.domElement.style.visibility = 'hidden';
   };
   const resume = () => {
     if (tickActive) return;
     tickActive = true;
+    resize();
     gsap.ticker.add(tick);
-    if (renderer.domElement.style) renderer.domElement.style.visibility = 'visible';
   };
 
   gsap.ticker.add(tick);

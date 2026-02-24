@@ -3,7 +3,7 @@
 import { useRef, useEffect } from 'react';
 import './framer5-section.css';
 
-const SITENAME = 'BYTESAVY';
+const SITENAME = 'Why Us?';
 const BIG_LINES = ['CODE.', 'MAP.', 'INNOVATE.'];
 
 const HORIZONTAL_ROWS = [

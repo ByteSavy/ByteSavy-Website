@@ -3,11 +3,7 @@
  * Call after DOM is rendered. If container is passed, canvas and sizing are scoped to it.
  */
 export function initFramer4(gsap, THREE, container = null, opts = {}) {
-  console.log('[Framer4 init] initFramer4 called', { hasGsap: !!gsap, hasTHREE: !!THREE, hasContainer: !!container, scrollDrive: opts.scrollDrive });
-  if (!gsap || !THREE) {
-    console.log('[Framer4 init] EARLY EXIT: missing gsap/THREE');
-    return () => {};
-  }
+  if (!gsap || !THREE) return () => {};
   const scrollDistance = opts.scrollDistance ?? (typeof window !== 'undefined' ? window.innerHeight : 1080);
   const ScrollTriggerPlugin = opts.ScrollTrigger;
 
@@ -18,7 +14,6 @@ export function initFramer4(gsap, THREE, container = null, opts = {}) {
     cw = typeof window !== 'undefined' ? window.innerWidth : 1920;
     ch = typeof window !== 'undefined' ? window.innerHeight : 1080;
   }
-  console.log('[Framer4 init] store size', { cw, ch, isScoped, clientW: container?.clientWidth, clientH: container?.clientHeight });
   const store = {
     ww: cw,
     wh: ch,
@@ -29,11 +24,7 @@ export function initFramer4(gsap, THREE, container = null, opts = {}) {
 
   const root = container || document;
   const sliderEl = root.querySelector('.js-slider');
-  if (!sliderEl) {
-    console.log('[Framer4 init] EARLY EXIT: .js-slider not found');
-    return () => {};
-  }
-  console.log('[Framer4 init] slider found, creating Gl and Slider...');
+  if (!sliderEl) return () => {};
 
   const backgroundCoverUv = `
   vec2 backgroundCoverUv(vec2 screenSize, vec2 imageSize, vec2 uv) {
@@ -180,7 +171,6 @@ export function initFramer4(gsap, THREE, container = null, opts = {}) {
 
   const containerRect = isScoped ? container.getBoundingClientRect() : null;
   const gl = new Gl();
-  console.log('[Framer4 init] Gl created, canvas in container');
 
   class Slider {
     constructor(el, opts = {}) {
@@ -316,7 +306,6 @@ export function initFramer4(gsap, THREE, container = null, opts = {}) {
   }
 
   const slider = new Slider(sliderEl);
-  console.log('[Framer4 init] Slider created, state.max', slider.state.max);
 
   let scrollTriggerInstance = null;
   if (opts.scrollDrive && ScrollTriggerPlugin && container && typeof ScrollTriggerPlugin.create === 'function') {
@@ -334,8 +323,10 @@ export function initFramer4(gsap, THREE, container = null, opts = {}) {
         slider.state.target = progress * max;
         slider.state.off = slider.state.target;
       },
+      onLeave: () => {
+        requestAnimationFrame(() => ScrollTriggerPlugin.refresh());
+      },
     });
-    console.log('[Framer4 init] ScrollTrigger pin + scrub added, scrollDistance', scrollDistance);
   }
 
   let contextLost = false;
@@ -350,10 +341,8 @@ export function initFramer4(gsap, THREE, container = null, opts = {}) {
     slider.render();
   };
   gsap.ticker.add(tick);
-  console.log('[Framer4 init] tick added, returning destroy');
 
   return function destroy() {
-    console.log('[Framer4 init] destroy() called');
     if (scrollTriggerInstance && scrollTriggerInstance.kill) scrollTriggerInstance.kill();
     gsap.ticker.remove(tick);
     slider.off();

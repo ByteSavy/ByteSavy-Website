@@ -34,7 +34,7 @@ export default function Framer3Section() {
 
     let initTimeoutId = null;
     let pauseTimeoutId = null;
-    const PAUSE_DELAY_MS = 350;
+    const PAUSE_DELAY_MS = 800;
 
     const obs = new IntersectionObserver(
       (entries) => {
@@ -79,9 +79,9 @@ export default function Framer3Section() {
               });
             })
             .catch((err) => console.warn('[Framer3] init failed', err));
-        }, 150);
+        }, 50);
       },
-      { rootMargin: '50px', threshold: 0.1 }
+      { rootMargin: '200px 0px 200px 0px', threshold: 0.15 }
     );
     obs.observe(container);
 

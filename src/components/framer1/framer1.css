@@ -3,3 +3,14 @@
 .framer1-section {
   font-family: "Manrope", sans-serif;
 }
+
+/* Mobile: big text like desktop but scales to avoid overflow */
+.framer1-section .framer1-link {
+  font-size: clamp(2rem, 9vw, 3.5rem);
+}
+
+@media (min-width: 640px) {
+  .framer1-section .framer1-link {
+    font-size: inherit;
+  }
+}

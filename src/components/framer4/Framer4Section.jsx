@@ -5,22 +5,23 @@ import { register, unregister } from '@/lib/webgl-section-manager';
 import './framer4-section.css';
 
 const SLIDES = [
-  '/projects/pic1.png',
   '/projects/pic2.png',
-  '/projects/pic3.png',
   '/projects/pic1.png',
-  '/projects/pic2.png',
+ 
   '/projects/pic3.png',
-  '/projects/pic1.png',
-  '/projects/pic2.png',
-  '/projects/pic3.png',
+  '/projects/pic4.png',
+  '/projects/pic5.png',
+  
   
   
 ];
 
-const TITLES = ['3D GIS', 'LocationIntelligence', 'Networking GIS'];
+const TITLES = ['3D Earth Systems','GeoAI Intelligence',  'Network Topology Mapping','Distributed Spatial Platforms','Scalable Geodata Infrastructure'];
 
 const ID = 'framer4';
+
+/** Set to false to disable Framer4 GSAP scroll/pin (to test if it causes Framer5 skip). */
+const FRAMER4_GSAP_SCROLL_ENABLED = false;
 
 export default function Framer4Section() {
   const containerRef = useRef(null);
@@ -72,7 +73,7 @@ export default function Framer4Section() {
               register(ID, () => {
                 console.log('[Framer4] register initFn called');
                 const destroy = embedMod.initFramer4(gsap, THREE, container, {
-                  scrollDrive: true,
+                  scrollDrive: FRAMER4_GSAP_SCROLL_ENABLED,
                   ScrollTrigger,
                   scrollDistance: typeof window !== 'undefined' ? window.innerHeight * 2.5 : 2700,
                 });
@@ -126,7 +127,9 @@ export default function Framer4Section() {
       </div>
 
       <div className="framer4-titles">
-        <div className="framer4-titles__title framer4-titles__title--proxy">Lorem ipsum</div>
+        <div className="framer4-titles__title framer4-titles__title--proxy">
+          {TITLES.reduce((a, b) => (a.length >= b.length ? a : b), '')}
+        </div>
         <div className="framer4-titles__list js-titles">
           {Array.from({ length: SLIDES.length }).map((_, i) => (
             <div key={i} className="framer4-titles__title js-title">
@@ -139,6 +142,12 @@ export default function Framer4Section() {
       <div className="framer4-progress">
         <div className="framer4-progress__line js-progress-line" />
         <div className="framer4-progress__line js-progress-line-2" />
+      </div>
+
+      <div className="framer4-scroll-hint" aria-hidden="true">
+        <span className="framer4-scroll-hint__arrow">←</span>
+        <span className="framer4-scroll-hint__text">Drag to scroll</span>
+        <span className="framer4-scroll-hint__arrow">→</span>
       </div>
     </section>
   );

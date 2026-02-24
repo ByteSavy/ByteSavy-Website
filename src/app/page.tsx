@@ -40,6 +40,16 @@ const Framer4Section = dynamic(() => import('@/components/framer4/Framer4Section
 const Framer5Section = dynamic(() => import('@/components/framer5/Framer5Section'), { ssr: false });
 const Framer6Section = dynamic(() => import('@/components/framer6/Framer6Section'), { ssr: false });
 const Footer = dynamic(() => import('@/components/footer'), { ssr: false });
+const AnimatedText = dynamic<AnimatedTextProps>(() => import('@/components/animated-text').then((mod) => mod.default as ComponentType<AnimatedTextProps>), { ssr: false }); 
+type AnimatedTextProps = {
+  text: string;
+  className?: string;
+  style?: React.CSSProperties;
+  delay?: number;
+  duration?: number;
+  ease?: string;
+  repeatWhenInView?: boolean;
+};
 const ROTATING_TEXTS = [
   ...(branding?.brand_personality?.slice(0, 3) || []),
 ];
@@ -163,7 +173,12 @@ export default function Home() {
             )}
           </div>
           <div className="relative z-10 max-w-4xl mx-auto text-center mt-[35vh] sm:mt-[40vh] md:mt-[45vh] px-2">
-            <p className="text-base sm:text-xl md:text-2xl font-medium min-h-[2.25rem] sm:min-h-[2.5rem] flex items-center justify-center flex-wrap sm:flex-nowrap gap-2">
+          <div className="flex flex-col items-center justify-center gap-2 mt-4 sm:mt-6">
+              <p className="text-sm font-medium sm:text-sm md:text-base opacity-100 bg-white text-primary px-2 py-1 rounded-full" style={{ color: colors.primary }}>
+                Your Complete Spatial Intelligence Partner
+              </p>
+            </div>
+            <p className="text-base sm:text-xl md:text-2xl font-medium min-h-[2.25rem] sm:min-h-[2.5rem] flex items-center justify-center flex-wrap sm:flex-nowrap gap-2 mt-4">
               <span
                 className="inline-flex items-center px-3 py-1.5 sm:px-5 sm:py-2 rounded-full max-w-[95vw] overflow-hidden text-ellipsis"
                 style={{ backgroundColor: colors.primary, color: colors.textLight }}
@@ -176,24 +191,30 @@ export default function Home() {
                 />
               </span>
             </p>
-            <div className="flex flex-col items-center justify-center gap-2 mt-4 sm:mt-6">
-              <p className="text-xs sm:text-sm md:text-base opacity-80" style={{ color: colors.darkBackground }}>
-                Your Complete Spatial Intelligence Partner
-              </p>
-            </div>
+            
           </div>
         </section>
+
 
         {/* 2. Framer1: animated links */}
         <Framer1Section
           links={[
+            { href: '#our-services', label: 'Our Services' },
             { href: '#services', label: 'GEoAI' },
-  { href: '#solutions', label: 'Location Intel' },
-  { href: '#fluidglass', label: '3D GIS' },
-  { href: '#hero', label: 'Networking GIS' },
+            { href: '#solutions', label: 'Location Intel' },
+            { href: '#fluidglass', label: '3D GIS' },
+            { href: '#hero', label: 'Networking GIS' },
           ]}
         />
 
+    <section id="our-work" className="bg-white min-h-[50dvh] flex items-center justify-center py-12">
+          <AnimatedText
+            text="Our Work"
+            className="text-6xl sm:text-7xl md:text-8xl font-bold"
+            style={{ color: colors.primary }}
+            repeatWhenInView={true}
+          />
+        </section>
         {/* 3. Framer3: WebGL grid (drag / wheel) */}
         <Framer3Section />
 

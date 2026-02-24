@@ -59,7 +59,8 @@
 
 @media (max-width: 768px) {
   .framer6-slide {
-    display: block;
+    display: flex;
+    flex-direction: column;
     position: relative;
     min-height: 100vh;
   }
@@ -71,12 +72,12 @@
 
 @media (max-width: 768px) {
   .framer6-col {
-    display: block;
     width: 100%;
-    min-height: 50vh;
+    flex: 0 0 auto;
   }
   .framer6-col--1 {
-    min-height: 100vh;
+    min-height: 0;
+    order: 2;
   }
 }
 
@@ -85,6 +86,13 @@
   z-index: 1;
   background: #fff;
   min-height: 140vh;
+}
+
+@media (max-width: 768px) {
+  .framer6-col--1 {
+    min-height: 0;
+    background: #fff;
+  }
 }
 
 .framer6-col--2 {
@@ -98,12 +106,15 @@
 
 @media (max-width: 768px) {
   .framer6-col--2 {
-    position: absolute;
-    left: 0;
-    top: 0;
+    position: relative;
+    left: auto;
+    top: auto;
     z-index: 0;
-    height: 100%;
+    height: 42vh;
+    min-height: 280px;
+    order: 1;
     align-self: unset;
+    flex-shrink: 0;
   }
 }
 
@@ -120,10 +131,14 @@
 
 @media (max-width: 768px) {
   .framer6-col__content {
-    width: 88%;
-    background: rgba(255, 255, 255, 0.92);
-    color: var(--color-dark-bg);
-    padding: 8vw;
+    width: 100%;
+    min-height: 50vh;
+    background: #fff;
+    color: var(--color-primary);
+    padding: 6vw 6vw 8vw;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
   }
 }
 
@@ -140,7 +155,11 @@
 @media (max-width: 768px) {
   .framer6-col__content .framer6-col__content-title {
     color: var(--color-primary);
-    font-size: clamp(2rem, 14vw, 5rem);
+    font-size: clamp(1.75rem, 8vw, 4rem);
+    max-width: 100%;
+    text-align: left;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 }
 
@@ -166,6 +185,8 @@
   .framer6-col__content-wrap {
     flex-direction: column;
     align-items: flex-start;
+    justify-content: flex-start;
+    max-width: 100%;
   }
 }
 
@@ -279,9 +300,29 @@
   height: 100%;
 }
 
+@media (max-width: 768px) {
+  .framer6-col__image-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+  }
+}
+
 .framer6-img {
   object-fit: cover;
   width: 100%;
   height: 100%;
+}
+
+@media (max-width: 768px) {
+  .framer6-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    object-fit: cover;
+    object-position: center;
+  }
 }
 
