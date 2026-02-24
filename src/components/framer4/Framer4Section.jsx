@@ -59,16 +59,23 @@ export default function Framer4Section() {
           console.log('[Framer4] Visible, loading gsap/three/init...');
           Promise.all([
             import('gsap'),
+            import('gsap/ScrollTrigger'),
             import('three'),
             import('./framer4-init.js'),
           ])
-            .then(([gsapMod, threeMod, embedMod]) => {
+            .then(([gsapMod, stMod, threeMod, embedMod]) => {
               console.log('[Framer4] Imports OK, calling register');
               const gsap = gsapMod.default;
+              const ScrollTrigger = stMod.default;
+              gsap.registerPlugin(ScrollTrigger);
               const THREE = threeMod.default ?? threeMod;
               register(ID, () => {
                 console.log('[Framer4] register initFn called');
-                const destroy = embedMod.initFramer4(gsap, THREE, container);
+                const destroy = embedMod.initFramer4(gsap, THREE, container, {
+                  scrollDrive: true,
+                  ScrollTrigger,
+                  scrollDistance: typeof window !== 'undefined' ? window.innerHeight * 2.5 : 2700,
+                });
                 console.log('[Framer4] initFramer4 returned', typeof destroy);
                 setMounted(true);
                 return destroy;

@@ -45,6 +45,18 @@ export default function Home() {
   const [showFluidGlass, setShowFluidGlass] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    const raf = requestAnimationFrame(() => window.scrollTo(0, 0));
+    const t = setTimeout(() => window.scrollTo(0, 0), 100);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(t);
+    };
+  }, []);
+
+  useEffect(() => {
     const hero = heroRef.current;
     if (!hero) return;
     const obs = new IntersectionObserver(
@@ -110,7 +122,16 @@ export default function Home() {
           style={{ backgroundColor: '#FFFFFF' }}
         >
           <div className="absolute inset-0 z-0 bg-white" />
-          <div className="absolute inset-0 z-[1]">
+          <div className="absolute inset-0 z-[1] w-full h-full pointer-events-none">
+            {showHeroEffects && (
+              <Aurora
+                colorStops={[colors.primary, colors.accent1, colors.accent2]}
+                amplitude={0.3}
+                blend={0.3}
+              />
+            )}
+          </div>
+          <div className="absolute inset-0 z-[2]">
             {showHeroEffects && (
               <GridDistortion
                 imageSrc="https://placehold.co/1920x1080/ffffff/185BCE/png?text=ByteSavy"
@@ -119,15 +140,6 @@ export default function Home() {
                 strength={0.15}
                 relaxation={0.9}
                 className="w-full h-full"
-              />
-            )}
-          </div>
-          <div className="absolute inset-0 z-[2] w-full h-full pointer-events-none opacity-90">
-            {showHeroEffects && (
-              <Aurora
-                colorStops={[colors.primary, colors.accent1, colors.accent2]}
-                amplitude={0.3}
-                blend={0.3}
               />
             )}
           </div>

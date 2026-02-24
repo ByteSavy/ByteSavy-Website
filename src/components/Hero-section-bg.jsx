@@ -22,7 +22,10 @@ varying vec2 vUv;
 void main() {
   vec2 uv = vUv;
   vec4 offset = texture2D(uDataTexture, vUv);
-  gl_FragColor = texture2D(uTexture, uv - uDistortionAmount * offset.rg);
+  vec4 tex = texture2D(uTexture, uv - uDistortionAmount * offset.rg);
+  float lum = (tex.r + tex.g + tex.b) / 3.0;
+  float alpha = 1.0 - smoothstep(0.75, 0.98, lum);
+  gl_FragColor = vec4(tex.rgb, alpha);
 }`;
 
 const useIsMobile = () => {

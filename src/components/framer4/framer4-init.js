@@ -2,12 +2,14 @@
  * Container-aware init for framer4 (horizontal WebGL slider).
  * Call after DOM is rendered. If container is passed, canvas and sizing are scoped to it.
  */
-export function initFramer4(gsap, THREE, container = null) {
-  console.log('[Framer4 init] initFramer4 called', { hasGsap: !!gsap, hasTHREE: !!THREE, hasContainer: !!container });
+export function initFramer4(gsap, THREE, container = null, opts = {}) {
+  console.log('[Framer4 init] initFramer4 called', { hasGsap: !!gsap, hasTHREE: !!THREE, hasContainer: !!container, scrollDrive: opts.scrollDrive });
   if (!gsap || !THREE) {
     console.log('[Framer4 init] EARLY EXIT: missing gsap/THREE');
     return () => {};
   }
+  const scrollDistance = opts.scrollDistance ?? (typeof window !== 'undefined' ? window.innerHeight : 1080);
+  const ScrollTriggerPlugin = opts.ScrollTrigger;
 
   const isScoped = container && typeof container.getBoundingClientRect === 'function';
   let cw = isScoped ? container.clientWidth : 0;
@@ -315,6 +317,27 @@ export function initFramer4(gsap, THREE, container = null) {
 
   const slider = new Slider(sliderEl);
   console.log('[Framer4 init] Slider created, state.max', slider.state.max);
+
+  let scrollTriggerInstance = null;
+  if (opts.scrollDrive && ScrollTriggerPlugin && container && typeof ScrollTriggerPlugin.create === 'function') {
+    gsap.registerPlugin(ScrollTriggerPlugin);
+    const easeProgress = (p) => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2);
+    scrollTriggerInstance = ScrollTriggerPlugin.create({
+      trigger: container,
+      start: 'top top',
+      end: `+=${scrollDistance}`,
+      pin: true,
+      onUpdate: (self) => {
+        const raw = Math.max(0, Math.min(1, self.progress));
+        const progress = easeProgress(raw);
+        const max = slider.state.max;
+        slider.state.target = progress * max;
+        slider.state.off = slider.state.target;
+      },
+    });
+    console.log('[Framer4 init] ScrollTrigger pin + scrub added, scrollDistance', scrollDistance);
+  }
+
   let contextLost = false;
   gl.renderer.domElement.addEventListener('webglcontextlost', (e) => {
     e.preventDefault();
@@ -331,6 +354,7 @@ export function initFramer4(gsap, THREE, container = null) {
 
   return function destroy() {
     console.log('[Framer4 init] destroy() called');
+    if (scrollTriggerInstance && scrollTriggerInstance.kill) scrollTriggerInstance.kill();
     gsap.ticker.remove(tick);
     slider.off();
     if (gl.renderer.domElement.parentNode) {
