@@ -36,6 +36,7 @@ const MagicBento = dynamic(() => import('@/components/magicbento'), { ssr: false
 const FluidGlass = dynamic(() => import('@/components/FLuidglass'), { ssr: false });
 const Framer1Section = dynamic(() => import('@/components/framer1/Framer1Section'), { ssr: false });
 const Framer3Section = dynamic(() => import('@/components/framer3/Framer3Section'), { ssr: false });
+const VideoSection = dynamic(() => import('@/components/VideoSection'), { ssr: false });
 const Framer4Section = dynamic(() => import('@/components/framer4/Framer4Section'), { ssr: false });
 const Framer5Section = dynamic(() => import('@/components/framer5/Framer5Section'), { ssr: false });
 const Framer6Section = dynamic(() => import('@/components/framer6/Framer6Section'), { ssr: false });
@@ -217,6 +218,9 @@ export default function Home() {
         </section>
         {/* 3. Framer3: WebGL grid (drag / wheel) */}
         <Framer3Section />
+
+        {/* Video: full-width, plays when in viewport */}
+        <VideoSection />
 
         {/* 4. Framer4: WebGL horizontal slider */}
         <Framer4Section />

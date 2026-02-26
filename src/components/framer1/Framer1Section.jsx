@@ -16,7 +16,7 @@ function AnimatedLink({ href, children }) {
       initial="initial"
       whileHover="hovered"
       href={href}
-      className="relative block overflow-hidden whitespace-nowrap text-5xl font-black uppercase sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl touch-manipulation framer1-link"
+      className="relative block overflow-hidden whitespace-nowrap text-3xl font-black uppercase sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl touch-manipulation"
     >
       <motion.div
         variants={{
