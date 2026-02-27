@@ -396,7 +396,11 @@ export const StaggeredMenu = ({
 
         <header
           className="staggered-menu-header absolute top-0 left-0 right-0 w-full flex items-center justify-between px-4 py-3 sm:p-[2em] min-h-[72px] box-border bg-transparent pointer-events-none z-20"
-          style={{ paddingTop: 'max(0.75rem, env(safe-area-inset-top))' }}
+          style={{
+            paddingTop: 'max(0.75rem, env(safe-area-inset-top))',
+            paddingLeft: 'max(1rem, env(safe-area-inset-left))',
+            paddingRight: 'max(1rem, env(safe-area-inset-right))'
+          }}
           aria-label="Main navigation header"
         >
           <div className="sm-logo flex items-center select-none pointer-events-auto shrink-0 max-w-[45%]" aria-label="Logo">
@@ -564,6 +568,10 @@ export const StaggeredMenu = ({
   .sm-scope .sm-mobile-nav-bar { display: none; }
   .sm-scope.sm-scope-mobile-bar .sm-logo-img { filter: none; }
   .sm-scope.sm-scope-mobile-bar .sm-toggle { color: inherit !important; }
+}
+/* Mobile: hide the right-side prelayers when menu is closed to avoid blue strip overflow */
+@media (max-width: 767px) {
+  .sm-scope .staggered-menu-wrapper:not([data-open]) .sm-prelayers { display: none; }
 }
 @media (max-width: 1024px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } .sm-scope .staggered-menu-wrapper[data-open] .sm-logo-img { filter: invert(100%); } .sm-scope .sm-panel-item { font-size: 2.5rem; } }
 @media (max-width: 640px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } .sm-scope .staggered-menu-wrapper[data-open] .sm-logo-img { filter: invert(100%); } .sm-scope .sm-panel-item { font-size: 1.75rem; padding-right: 1rem; } .sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after { font-size: 14px; right: 0.5rem; } }

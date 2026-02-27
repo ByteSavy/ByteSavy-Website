@@ -264,9 +264,9 @@ export default function CartoInspiredPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900">
+    <div className="min-h-screen w-full min-w-0 max-w-[100vw] bg-white text-slate-900 overflow-x-hidden">
       {/* Navigation (desktop + mobile) */}
-      <header className="bg-white">
+      <header className="bg-white w-full">
         <div className="hidden md:block">
           <CardNav
             logo="/main-logo.png"
@@ -319,7 +319,7 @@ export default function CartoInspiredPage() {
                   Ship spatial products your users actually enjoy.
                 </h1>
 
-                <p className="text-sm sm:text-base md:text-lg text-slate-800 max-w-xl">
+                <p className="text-sm sm:text-base md:text-lg text-slate-800 max-w-xl bg-white">
                   We help teams go from &ldquo;we should add a map&rdquo; to fully-fledged spatial
                   experiences: performant, on-brand, and deeply tied to business outcomes.
                 </p>
@@ -466,7 +466,7 @@ export default function CartoInspiredPage() {
                   );
                 })()}
               </div>
-              <div className="relative">
+              <div className="relative min-w-0 overflow-hidden">
                 <Framer4Section />
               </div>
             </div>

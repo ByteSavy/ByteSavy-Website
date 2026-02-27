@@ -2,20 +2,42 @@
 
 .framer4-section {
   width: 100%;
+  min-width: 0; /* allow shrinking inside grid */
 }
 
 .framer4-carousel {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-width: 0;
 }
 
+/* Mobile: constrain height and width so it fits and doesn't overflow */
 .framer4-carousel-media {
   position: relative;
   overflow: hidden;
   border-radius: 1.5rem;
-  /* no border or background so it merges with parent */
-  height: 720px;
+  width: 100%;
+  max-width: 100%;
+  min-height: 220px;
+  height: 56vw;
+  max-height: 320px;
+}
+
+@media (min-width: 640px) {
+  .framer4-carousel-media {
+    min-height: 360px;
+    height: 42vw;
+    max-height: 480px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .framer4-carousel-media {
+    height: 720px;
+    max-height: none;
+    min-height: 0;
+  }
 }
 
 .framer4-image {
