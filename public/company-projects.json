@@ -1,0 +1,344 @@
+{
+    "projects": [
+      {
+        "id": 1,
+        "title": "Digging sites and their Capacity Maps",
+        "description": "Project description. MERN Stack is using with leaflet js and OSM. It displays all of the digging work done in the choosen time frame in the form slide. 1) Legends for better understanding 2) Time slide to display progress in the chosen time frame 3) Drop down menu to choose time frame.",
+        "skills_deliverables": [
+          "MERN Stack",
+          "OpenStreetMap",
+          "Map Visualization",
+          "Map Integration",
+          "GIS"
+        ],
+        "media": [
+          "/projects/company-project-assets/Digging sites and their Capacity Maps.png"
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Morgan Fertlity USA locations Map",
+        "description": "Project description. Interactive webmap displaying all of the locations of Morgan Fertility in USA. 1) Firstly the data was extracted using google places api 2) Google Map API was used for Web map developement 3) Google sheets API was used as substitute to the database",
+        "skills_deliverables": [
+          "Google Maps API",
+          "Google Places API",
+          "Google Sheets",
+          "JavaScript",
+          "Google Maps"
+        ],
+        "media": [
+          "/projects/company-project-assets/Morgan Fertlity USA locations Map-1.png",
+          "/projects/company-project-assets/Morgan Fertlity USA locations Map-2.png"
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Employee Research Mapping Dashboard",
+        "description": "Project description. web-based interactive map displaying employees’ profiles, research studies, and locations to make institutional and scientific data easily accessible.\\ Stack: html, css, js, SQL, mapbox, leaflet js, Node js",
+        "skills_deliverables": [
+          "Mapbox",
+          "Leaflet",
+          "SQL",
+          "JavaScript",
+          "Node.js"
+        ],
+        "media": [
+          "/projects/company-project-assets/Employee Research Mapping Dashboard-1.png",
+          "/projects/company-project-assets/Employee Research Mapping Dashboard-2.png"
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Desalination plants Interactive map of Gulf of Mexico",
+        "description": "Project description. Tools: 1) Check box for data layer 2) Location marker filter based on size of plant 3) Different size and colour of location marker based on data 4) On click location details pop up",
+        "skills_deliverables": [
+          "Mapbox",
+          "Map Visualization",
+          "JavaScript",
+          "Leaflet",
+          "GeoJSON"
+        ],
+        "media": [
+          "/projects/company-project-assets/Desalination plants Interactive map of Gulf of Mexico-1.png",
+          "/projects/company-project-assets/Desalination plants Interactive map of Gulf of Mexico-2.png"
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Automatic Building footprints finding Model",
+        "description": "Project description. This is a Deep learning Model that takes Satellite imageries, run the model on it and return shapefile of all the building footprint extracted via Satellite imagery",
+        "skills_deliverables": [
+          "GIS",
+          "GIS Software",
+          "Python",
+          "Deep Learning Modeling",
+          "Deep Learning"
+        ],
+        "media": [
+          "/projects/company-project-assets/Automatic Building footprints finding Model.png"
+        ]
+      },
+      {
+        "id": 6,
+        "title": "ESRI Web Map Dashboard for Telecommunication Service Provider",
+        "description": "Project description. This is a full fledge administration dashboard designed to view and edit service areas and other details for telecommunication service provider\\ Stack: Esri as a mapping library PostgreSQL with Geoserver for data storage and serving Angular for frontend Nodejs with express as Backend",
+        "skills_deliverables": [
+          "PostgreSQL",
+          "GIS",
+          "Map Visualization",
+          "AngularJS",
+          "MEAN Stack"
+        ],
+        "media": [
+          "/projects/company-project-assets/ESRI Web Map Dashboard for Telecommunication Service Provider.mp4"
+        ]
+      },
+      {
+        "id": 7,
+        "title": "MERN Mapbox map for Discount provider Website",
+        "description": "Project description. This Web app lets you find a nearest store with discount for the products you want to buy. STACK: React, MongoDB, Nodejs, Mapbox Tools: 1) Search bar to search for your address 2) Filter Based on category 3) Product list with on click option to move to official store website 4) On click details for location markers",
+        "skills_deliverables": [
+          "MongoDB",
+          "React",
+          "Node.js",
+          "Mapbox",
+          "Online Store Customization"
+        ],
+        "media": [
+          "/projects/company-project-assets/MERN Mapbox map for Discount provider Website.png"
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Real estate Map using Google maps API",
+        "description": "Project description. Interactive map developed using google API with different set of location markers based on catagory.",
+        "skills_deliverables": [
+          "Google Maps API",
+          "Google Maps",
+          "Google APIs",
+          "Map Integration",
+          "Map Visualization"
+        ],
+        "media": [
+          "/projects/company-project-assets/Real estate Map using Google maps API.png"
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Atlanta Vehicle related crime map",
+        "description": "Project description. WordPress map displaying all of the Vehicle related crimes committed in Atlanta. Map is using Real time API from Atlanta police official website to extract, clean and filter out all the crimes and displaying it on mapbox map displayed on WordPress",
+        "skills_deliverables": [
+          "API Integration",
+          "Mapbox",
+          "WordPress"
+        ],
+        "media": [
+          "/projects/company-project-assets/Atlanta Vehicle related crime map.mp4"
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Maple Map | Shopify store for Custom Wooden Maps",
+        "description": "Project description. Client Review: \"I recommend Badar for his professionalism, responsiveness and willingness to understand. He was able to create a personalized geo map customization page in a clever way. His work is organized and qualitative. Many thanks to Badar.\"",
+        "skills_deliverables": [
+          "Shopify Development",
+          "Mapbox",
+          "Map Plugin"
+        ],
+        "media": [
+          "/projects/company-project-assets/Maple Map _ Shopify store for Custom Wooden Maps.mp4"
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Book My Trial || Web based Fitness related dicounts finder",
+        "description": "Project description. Client: BookMyTrial - A California based company focused on providing best deals related to fitness across California 1) Search bar 2) On click pop ups 3) Filters",
+        "skills_deliverables": [
+          "MERN Stack",
+          "Mapbox",
+          "Leaflet"
+        ],
+        "media": [
+          "/projects/company-project-assets/Book My Trial __ Web based Fitness related dicounts finder.png"
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Thaitrek",
+        "description": "My role. Mapbox development\nProject description. 🚀 Project Overview: Navigating Thailand's Wilderness 🚀 Thaitrek embarked on a transformative project aimed at enhancing the exploration experience through a meticulously crafted Mapbox map on Framer. Here's a breakdown of its key features: 1️⃣ Map View Toggle 2️⃣ Path and Camping Site Toggle 3️⃣ Advanced Search Bar 4️⃣ Location Marker Pop-ups",
+        "skills_deliverables": [
+          "Mapbox",
+          "React",
+          "Framer",
+          "GIS"
+        ],
+        "media": [
+          "/projects/company-project-assets/Thaitrek-1.mp4",
+          "/projects/company-project-assets/Thaitrek-2.png",
+          "/projects/company-project-assets/Thaitrek-3.png"
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Map Portrait Page on Wordpress for Woodix",
+        "description": "Project description. About Client: Woodix is an innovative online store that specializes in creating stunning wooden map portraits These unique pieces blend artistic craftsmanship with personalization, allowing customers to capture their cherished locations in beautifully crafted wooden frames. Woodix stands at the intersection of art and technology, offering a bespoke product that serves not just as a decorative item but a personal memento that holds special significance.",
+        "skills_deliverables": [
+          "WordPress",
+          "Map Illustration",
+          "Mapbox",
+          "Web Page",
+          "Map Integration",
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "Elementor"
+        ],
+        "media": [
+          "/projects/company-project-assets/Map Portrait Page on Wordpress for Woodix.mp4"
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Interactive Map for AIRGO",
+        "description": "Project description. 🛢️ About AIRGO (Client): Proudly serving as a US-based freight forwarder, AIRGO specializes in global Air, Ground, and Ocean expedited transportation Their suite of services extends to 3PL solutions, including the innovative Marketplace solution designed for economical logistics operations. 🌐 Project Overview: Created using HTML, CSS, and JavaScript, this web map features AIRGO's extensive network of airports worldwide. Leveraging the powerful Mapbox mapping library, the custom base map provides a visually stunning backdrop for a seamless user experience.",
+        "skills_deliverables": [
+          "Mapbox",
+          "Map Plugin",
+          "Map Illustration",
+          "Map Integration",
+          "Google Forms"
+        ],
+        "media": [
+          "/projects/company-project-assets/Interactive Map for AIRGO-1.png",
+          "/projects/company-project-assets/Interactive Map for AIRGO-2.mp4"
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Dynamic Web Map showcasing PFAS water levels across Florida",
+        "description": "Project description. 🔍 Project Details: 1 Layered Insight: Explore hidden layers, including counties, service areas, and data points representing houses where water quality tests were conducted. A point layer highlights water facilitation centers. 2. Interactive Pop-ups: Clicking on any point triggers a pop-up menu and chart, revealing detailed information about the corresponding water facilitation center. 3. Location Search: A user-friendly search bar with autofill options simplifies location queries, enhancing the overall user experience. 4.",
+        "skills_deliverables": [
+          "Mapbox",
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "GIS",
+          "Map Illustration"
+        ],
+        "media": [
+          "/projects/company-project-assets/Dynamic Web Map showcasing PFAS water levels across Florida.mp4"
+        ]
+      },
+      {
+        "id": 16,
+        "title": "Web Dashboard with Interactive MAP tools for Aerux Broadband",
+        "description": "Project description. Client: Aerux Broadband - A Leader in Broadband Services 👔 🚀 Project Overview: Mapping a Connected Future 🚀 The focal point of this initiative is a dynamic web map meticulously crafted to streamline and optimize Aerux's operational framework: 1️⃣ MERN Stack Admin Dashboard Developed using Leaflet JS, this sophisticated dashboard empowers administrators to delineate polygons, facilitating the assignment of distinct offers, speeds, and pricing structures to specific geographical areas",
+        "skills_deliverables": [
+          "Mapbox",
+          "Leaflet",
+          "Map Visualization",
+          "MERN Stack",
+          "MEAN Stack",
+          "Dashboard",
+          "Map Integration",
+          "Map Plugin",
+          "Map Illustration",
+          "React",
+          "Node.js",
+          "Next.js",
+          "GIS",
+          "JavaScript"
+        ],
+        "extra_description": "Client: Aerux Broadband - A Leader in Broadband Services 👔 🚀 Project Overview: Mapping a Connected Future 🚀 The focal point of this initiative is a dynamic web map meticulously crafted to streamline and optimize Aerux's operational framework: 1️⃣ MERN Stack Admin Dashboard Developed using Leaflet JS, this sophisticated dashboard empowers administrators to delineate polygons, facilitating the assignment of distinct offers, speeds, and pricing structures to specific geographical areas. 2️⃣ Vector Editing Tool A robust vector editing tool has been implemented to enable seamless modification of polygons, facilitating the expeditious adjustment of offers and other essential parameters. 3️⃣ Map Views Toggle To enhance user experience, the system offers a toggle feature, allowing users to seamlessly switch between street map and satellite views. This ensures a comprehensive understanding of the service areas. 4️⃣ MEAN Stack Public-Side Search Bar Utilizing MapBox, a sophisticated search bar on the public side has been implemented, affording customers the ability to easily identify available internet offers in their respective areas, fostering transparency and informed decision-making.",
+        "media": [
+          "/projects/company-project-assets/Web Dashboard with Interactive MAP tools for Aerux Broadband.mp4"
+        ]
+      },
+      {
+        "id": 17,
+        "title": "REACT Leaflet js Map for UK Seaports",
+        "description": "Project description. A dynamic React-based web map that visualizes sea routes and provides insightful details about sea ports in the United Kingdom! 🌟 Client Review: \"Badar is a great React dev and GIS analyst He is fast and delivers on time. Discuss the requirements to a T beforehand so you both are on the same page.\" 🗺️🛠️ Project Highlights: 1)Interactive Web Map: Utilized React JS and Leaflet mapping library to create an engaging map displaying sea routes and ports.",
+        "skills_deliverables": [
+          "React",
+          "Leaflet",
+          "Map Integration",
+          "Map Visualization",
+          "Thematic Map",
+          "JavaScript"
+        ],
+        "extra_description": "A dynamic React-based web map that visualizes sea routes and provides insightful details about sea ports in the United Kingdom! 🌟 Client Review: \"Badar is a great React dev and GIS analyst. He is fast and delivers on time. Discuss the requirements to a T beforehand so you both are on the same page.\" 🗺️🛠️ Project Highlights: 1)Interactive Web Map: Utilized React JS and Leaflet mapping library to create an engaging map displaying sea routes and ports. 2) Detailed Information on Click/Hover: Enhanced user experience by incorporating features that provide real-time data 3) Clicking on a port or hovering over a route reveals the number of ships and gross tonnes transported daily. 4) Visual Data Representation: The thickness of the route visually represents the number of ships, while the color indicates the gross tonnes being carried—offering an intuitive understanding of maritime activities. 5) Customizable Ship Details: Implemented a top menu allowing users to choose and display specific ship details, providing a comprehensive view tailored to individual preferences.",
+        "media": [
+          "/projects/company-project-assets/REACT Leaflet js Map for UK Seaports.mp4"
+        ]
+      },
+      {
+        "id": 18,
+        "title": "Interactive Map for Headstone World Houston",
+        "description": "Project description. The web map boasts an array of features to enhance user experience: 1 Cemetery Locations: - Display of various cemetery locations. - Pinpointing the location of the HeadStone World Houston company. 2. Interactive Pop-ups: - On-click pop-ups providing detailed information about each cemetery. - Downloadable PDF files related to specific cemetery details. 3. Search Functionality: - A user-friendly search bar enabling users to easily find specific cemeteries. 4.",
+        "skills_deliverables": [
+          "Leaflet",
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "GIS",
+          "Apache Tomcat"
+        ],
+        "extra_description": "headstoneworldhouston.com/newmap/index.html\nThe web map boasts an array of features to enhance user experience: 1. Cemetery Locations: - Display of various cemetery locations. - Pinpointing the location of the HeadStone World Houston company. 2. Interactive Pop-ups: - On-click pop-ups providing detailed information about each cemetery. - Downloadable PDF files related to specific cemetery details. 3. Search Functionality: - A user-friendly search bar enabling users to easily find specific cemeteries. 4. Distance Finder: - Functionality to calculate and display the distance between the company's warehouse and the desired cemetery. Review from Client: \"I recently commissioned a project on Fiverr for an interactive React JS web map, and I must say, the experience was nothing short of exceptional! The developer seamlessly integrated Leaflet JS, web map to create a dynamic and user-friendly interface that exceeded all my expectations.\"",
+        "media": [
+          "/projects/company-project-assets/Interactive Map for Headstone World Houston.mp4"
+        ]
+      },
+      {
+        "id": 19,
+        "title": "3d Map of Noise Compaint in NYC",
+        "description": "Project description. Administrative boundry of NYC was downloaded from DIVA GIS and extracted in ArcGIS. Dataset of Noise Complaint was downloaded from online source. The map was made and designed using ArcGIS",
+        "skills_deliverables": [
+          "ArcGIS",
+          "GIS",
+          "Geospatial Data"
+        ],
+        "media": [
+          "/projects/company-project-assets/3d Map of Noise Compaint in NYC.png"
+        ]
+      },
+      {
+        "id": 20,
+        "title": "Noise Complain Map of Manhattan",
+        "description": "Project description. Dataset was collected from an online source. Adminstrative Boundary was downloaded from DIVA GIS and Manhattan was extracted out in ArcGIS Made this map on ArcGIS using Hexagonal binning method.",
+        "skills_deliverables": [
+          "ArcGIS",
+          "GIS",
+          "Geospatial Data"
+        ],
+        "media": [
+          "/projects/company-project-assets/Noise Complain Map of Manhattan.png"
+        ]
+      },
+      {
+        "id": 21,
+        "title": "NYC Population Density Map",
+        "description": "Project description. I made a population density map of NYC that shows the correlation between population 65 years and older and Population under 18 years of age. Dataset was taken from open sources on internet and map was made using ArcGIS",
+        "skills_deliverables": [
+          "GIS",
+          "ArcGIS"
+        ],
+        "media": [
+          "/projects/company-project-assets/NYC Population Density Map.png"
+        ]
+      },
+      {
+        "id": 22,
+        "title": "Site Suitability Analysis for Environment Awareness Centre",
+        "description": "Project description. I did Site Suitability Analysis as a challenge project for Environment Awareness Centre Data was collected from Open Street Map Cleaning was done on ArcGIS Ring Buffer was Applied on different Attributes according to requirement Weighted Overlay was done to get the end result",
+        "skills_deliverables": [
+          "ArcGIS",
+          "OpenStreetMap",
+          "Data Cleaning",
+          "Formatting"
+        ],
+        "media": [
+          "/projects/company-project-assets/Site Suitability Analysis for Environment Awareness Centre.png"
+        ]
+      }
+    ]
+  }

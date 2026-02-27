@@ -341,9 +341,15 @@ export default function Footer() {
               <img src="/main-logo.png" alt={company?.brand_name || 'ByteSavy'} className="bs-footer-logo" />
             </Link>
             <div className="bs-store-badges">
-              <a href="#" id="footer-appstore" className="bs-store-badge" aria-label="Download on App Store">
+              <a href="#" id="footer-appstore" className="bs-store-badge" aria-label="Download on the App Store">
                 <div className="bs-badge-inner">
-                  <span className="bs-badge-icon">🍎</span>
+                  <span className="bs-badge-icon">
+                    <img
+                      src="/badges/app-store-icon.svg"
+                      alt="Apple App Store"
+                      className="h-5 w-5"
+                    />
+                  </span>
                   <div>
                     <span className="bs-badge-sub">Download on the</span>
                     <span className="bs-badge-main">App Store</span>
@@ -352,7 +358,13 @@ export default function Footer() {
               </a>
               <a href="#" id="footer-playstore" className="bs-store-badge" aria-label="Get it on Google Play">
                 <div className="bs-badge-inner">
-                  <span className="bs-badge-icon">▶</span>
+                  <span className="bs-badge-icon">
+                    <img
+                      src="/badges/google-play-icon.svg"
+                      alt="Google Play"
+                      className="h-5 w-5"
+                    />
+                  </span>
                   <div>
                     <span className="bs-badge-sub">Get it on</span>
                     <span className="bs-badge-main">Google Play</span>

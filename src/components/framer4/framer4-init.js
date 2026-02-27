@@ -41,14 +41,10 @@ export function initFramer4(gsap, THREE, container = null, opts = {}) {
   `;
   const vertexShader = `
   precision mediump float;
-  uniform float uVelo;
   varying vec2 vUv;
-  #define M_PI 3.1415926535897932384626433832795
   void main(){
-	vec3 pos = position;
-	pos.x = pos.x + ((sin(uv.y * M_PI) * uVelo) * 0.125);
-	vUv = uv;
-	gl_Position = projectionMatrix * modelViewMatrix * vec4(pos,1.);
+    vUv = uv;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.);
   }
   `;
   const fragmentShader = `
@@ -57,20 +53,11 @@ export function initFramer4(gsap, THREE, container = null, opts = {}) {
   uniform sampler2D uTexture;
   uniform vec2 uMeshSize;
   uniform vec2 uImageSize;
-  uniform float uVelo;
-  uniform float uScale;
   varying vec2 vUv;
   void main() {
-	vec2 uv = vUv;
-	vec2 texCenter = vec2(0.5);
-	vec2 texUv = backgroundCoverUv(uMeshSize, uImageSize, uv);
-	vec2 texScale = (texUv - texCenter) * uScale + texCenter;
-	vec4 texColor = texture2D(uTexture, texScale);
-	texScale.x += 0.15 * uVelo;
-	if(uv.x < 1.) texColor.g = texture2D(uTexture, texScale).g;
-	texScale.x += 0.10 * uVelo;
-	if(uv.x < 1.) texColor.b = texture2D(uTexture, texScale).b;
-	gl_FragColor = texColor;
+    vec2 texUv = backgroundCoverUv(uMeshSize, uImageSize, vUv);
+    vec4 texColor = texture2D(uTexture, texUv);
+    gl_FragColor = texColor;
   }
   `;
 
@@ -182,6 +169,7 @@ export function initFramer4(gsap, THREE, container = null, opts = {}) {
         titles: doc.querySelectorAll('.js-title'),
         lines: doc.querySelectorAll('.js-progress-line'),
       };
+      this.activeIndex = 0;
       this.state = {
         target: 0,
         current: 0,
@@ -239,6 +227,17 @@ export function initFramer4(gsap, THREE, container = null, opts = {}) {
           out: false,
         });
       }
+
+      // Start with the first slide centered, no initial empty gap
+      if (this.items.length > 0) {
+        const first = this.items[0];
+        const viewportCenter = ww / 2;
+        const desiredTarget = viewportCenter - (first.left + first.width / 2);
+        const clampedTarget = gsap.utils.clamp(state.max, state.min, desiredTarget);
+        state.current = clampedTarget;
+        state.target = clampedTarget;
+        state.off = clampedTarget;
+      }
     }
     calc() {
       const state = this.state;
@@ -250,6 +249,10 @@ export function initFramer4(gsap, THREE, container = null, opts = {}) {
       if (this.tl) this.tl.progress(state.progress);
     }
     transformItems() {
+      let bestIndex = this.activeIndex;
+      let bestDist = Infinity;
+      const viewportCenter = store.ww / 2;
+
       for (let i = 0; i < this.items.length; i++) {
         const item = this.items[i];
         const translate = gsap.utils.wrap(item.min, item.max, this.state.currentRounded);
@@ -261,6 +264,30 @@ export function initFramer4(gsap, THREE, container = null, opts = {}) {
         item.plane.mat.uniforms.uVelo.value = this.state.diff;
         if (!item.out && item.tl) item.tl.progress(progress);
         item.out = !isVisible;
+
+        // Track which slide is closest to the center of the viewport
+        const centerX = start + item.width / 2;
+        const dist = Math.abs(centerX - viewportCenter);
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestIndex = i;
+        }
+      }
+
+      // Notify React about active slide changes
+      if (bestIndex !== this.activeIndex) {
+        this.activeIndex = bestIndex;
+        if (typeof window !== 'undefined' && window.dispatchEvent) {
+          try {
+            window.dispatchEvent(
+              new CustomEvent('framer4:activeSlide', {
+                detail: { index: bestIndex },
+              })
+            );
+          } catch (_) {
+            // ignore
+          }
+        }
       }
     }
     render() {

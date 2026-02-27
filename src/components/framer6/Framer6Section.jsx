@@ -3,30 +3,30 @@
 import { useRef, useEffect } from 'react';
 import './framer6-section.css';
 
-const INTRO_TITLE = 'Ready?';
+const INTRO_TITLE = 'Ready to map what’s next?';
 
 const SLIDES = [
   { 
     id: 'f6-slide-1',
-    title: 'Observe.',
-    subtitle: 'Earth Intelligence',
-    text: 'We transform the complexity of our planet into structured spatial insight. From terrain to infrastructure, every layer tells a story.',
+    title: 'See the whole planet.',
+    subtitle: 'Earth & planetary intelligence',
+    text: 'From blue marble to city block, we stitch together terrain, infrastructure, and human activity into one coherent spatial picture.',
     bg: 'white',
     img: '/projects/asset1.png'
   },
   { 
     id: 'f6-slide-2',
-    title: 'Analyze.',
-    subtitle: 'GeoAI Systems',
-    text: 'Satellite imagery, machine learning, and geospatial engineering — converting raw earth data into measurable, decision-ready intelligence.',
+    title: 'Think like a satellite.',
+    subtitle: 'GeoAI from orbit to insight',
+    text: 'We combine satellite imagery, ML models, and GIS engineering to turn raw pixels into risk scores, coverage maps, and live decision signals.',
     bg: 'white',
     img: '/projects/asset2.png'
   },
   { 
     id: 'f6-slide-3',
-    title: 'Deploy.',
-    subtitle: 'Spatial Applications',
-    text: 'Interactive maps, intelligent dashboards, and automated detection models built to solve real-world operational challenges.',
+    title: 'Ship the spatial experience.',
+    subtitle: 'Dashboards, maps & products',
+    text: 'Production-ready web maps, dashboards, and map-first interfaces—designed to feel premium on desktop, tablet, and mobile.',
     bg: 'white',
     img: '/projects/asset3.png'
   },

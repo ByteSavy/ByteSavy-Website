@@ -1,176 +1,82 @@
-/* Scoped to .framer4-section – mobile responsive */
+/* Simple image carousel styles for Framer4Section */
 
-.framer4-section .dom-gl {
-  position: absolute;
-  top: 0;
-  left: 0;
+.framer4-section {
   width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  background-color: #fff;
 }
 
-.framer4-section .framer4-slider,
-.framer4-section.slider {
+.framer4-carousel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.framer4-carousel-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  /* no border or background so it merges with parent */
+  height: 720px;
+}
+
+.framer4-image {
   position: absolute;
   inset: 0;
-  padding: 0 8vw;
-  display: flex;
-  align-items: center;
-  user-select: none;
-  cursor: grab;
-  z-index: 10;
-  pointer-events: auto;
-}
-
-@media (min-width: 640px) {
-  .framer4-section .framer4-slider,
-  .framer4-section.slider {
-    padding: 0 15vw;
-  }
-}
-
-@media (min-width: 1024px) {
-  .framer4-section .framer4-slider,
-  .framer4-section.slider {
-    padding: 0 22.5vw;
-  }
-}
-
-.framer4-section .framer4-slider__inner {
-  display: flex;
-  position: relative;
-}
-
-.framer4-section .framer4-slide {
-  overflow: hidden;
-}
-
-.framer4-section .framer4-slide:first-child {
-  position: relative;
-}
-
-.framer4-section .framer4-slide:not(:first-child) {
-  position: absolute;
-  top: 0;
+  width: 100%;
   height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 400ms ease;
 }
 
-.framer4-section .framer4-slide__inner {
-  position: relative;
-  overflow: hidden;
-  width: 78vw;
-  padding-top: 56.25%;
+.framer4-image.is-active {
+  opacity: 1;
 }
 
-@media (min-width: 640px) {
-  .framer4-section .framer4-slide__inner {
-    width: 65vw;
-    padding-top: 56.25%;
-  }
-}
-
-@media (min-width: 1024px) {
-  .framer4-section .framer4-slide__inner {
-    width: 55vw;
-    padding-top: 56.5%;
-  }
-}
-
-.framer4-section .framer4-slide__inner img {
-  display: none;
-}
-
-.framer4-section .framer4-titles {
+.framer4-nav {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90vw;
-  max-width: 60rem;
-  min-height: 1.4em;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 3;
-}
-
-.framer4-section .framer4-titles__list {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-.framer4-section .framer4-titles__title {
+  transform: translateY(-50%);
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #0f172a;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(1.25rem, 6vw, 4rem);
-  font-weight: bold;
-  letter-spacing: -0.1vw;
-  line-height: 1.2;
-  min-height: 1.2em;
-  padding: 0 0.25em;
-  white-space: nowrap;
-  color: #185BCE; /* fill color */
-  -webkit-text-stroke: 1px #ffffff; 
+  cursor: pointer;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
 }
 
-.framer4-section .framer4-titles__title--proxy {
-  visibility: hidden;
+.framer4-nav--prev {
+  left: 0.75rem;
 }
 
-.framer4-section .framer4-progress {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 0.25rem;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 4;
+.framer4-nav--next {
+  right: 0.75rem;
 }
 
-.framer4-section .framer4-progress__line {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: scaleX(0);
-  transform-origin: left;
-  background-color: #fff;
-}
-
-.framer4-section .framer4-progress__line:nth-child(2) {
-  transform-origin: right;
-}
-
-.framer4-section .framer4-scroll-hint {
-  position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
+.framer4-caption {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
+}
+
+.framer4-caption-item {
   padding: 0.35rem 0.75rem;
-  border-radius: 2rem;
-  background: rgba(255, 255, 255, 0.9);
-  color: #0A1A33;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  pointer-events: none;
-  z-index: 5;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  font-size: 0.8rem;
+  color: #0f172a;
+  cursor: pointer;
+  transition: all 150ms ease;
 }
 
-.framer4-section .framer4-scroll-hint__arrow {
-  opacity: 0.9;
-  font-size: 0.7rem;
-}
-
-.framer4-section .framer4-scroll-hint__text {
-  white-space: nowrap;
+.framer4-caption-item.is-active {
+  background: #185bce;
+  border-color: #185bce;
+  color: #ffffff;
 }

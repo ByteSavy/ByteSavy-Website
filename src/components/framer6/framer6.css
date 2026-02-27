@@ -348,7 +348,7 @@ p {
     width: 53px;
     height: 53px;
     border-radius: 50%;
-    border: 1px solid var(--dark);
+    border: 1px solid #ffffff;
 }
 
 .slide-link__line {

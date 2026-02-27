@@ -7,7 +7,7 @@
   width: 100%;
   position: relative;
   isolation: isolate;
-  border-top: 4px solid var(--color-primary);
+  
 }
 
 .framer6-stage {
@@ -39,10 +39,10 @@
 }
 
 .framer6-intro__title {
-  font-size: clamp(3rem, 20vw, 14rem);
+  font-size: clamp(2.4rem, 9vw, 4.5rem);
   font-weight: 700;
   margin: 0;
-  line-height: 0.95;
+  line-height: 1.05;
   letter-spacing: -0.02em;
   color: var(--color-primary);
   overflow: hidden;
@@ -144,12 +144,20 @@
 
 .framer6-col__content-title {
   margin: 0 0 2rem;
-  font-size: clamp(2rem, 8vw, 5rem);
+  font-size: clamp(1.6rem, 5vw, 3rem);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.03em;
-  color: var(--color-primary);
+  color: #0f172a; /* darker for main title */
   flex-shrink: 0;
+}
+
+.framer6-col__content-title .framer6-line__inner:first-child {
+  color: #0f172a; /* title */
+}
+
+.framer6-col__content-title .framer6-line__inner:last-child {
+  color: var(--color-primary); /* subtitle highlight */
 }
 
 @media (max-width: 768px) {
@@ -219,7 +227,7 @@
   height: 56px;
   flex-shrink: 0;
   border-radius: 50%;
-  border: 2px solid var(--color-primary);
+ 
   color: var(--color-primary);
   text-decoration: none;
   transition: background 0.3s, border-color 0.3s, color 0.3s;
@@ -230,7 +238,7 @@
 
 .framer6-slide-link:hover {
   background: var(--color-primary);
-  border-color: var(--color-primary);
+
   color: var(--color-text-light);
 }
 
