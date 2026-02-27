@@ -299,7 +299,7 @@ export default function CartoInspiredPage() {
         {/* Hero: Aurora + planet image on the right */}
         <section className="relative overflow-hidden bg-white">
           <div className="absolute inset-0 z-0">
-            <Aurora color={colors.primary} className="w-full h-full opacity-60" />
+            <Aurora color={colors.primary} className="w-full h-full opacity-60" style={{}} />
           </div>
           {/* Planet / earth image from Framer6 as right-aligned background (desktop/tablet only) */}
           <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden hidden md:block">

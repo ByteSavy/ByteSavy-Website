@@ -231,7 +231,7 @@ export default function CartoInspiredPage() {
         {/* Hero: Aurora background only */}
         <section className="relative overflow-hidden bg-white">
           <div className="absolute inset-0 z-0">
-            <Aurora color={colors.primary} className="w-full h-full opacity-60" />
+            <Aurora color={colors.primary} className="w-full h-full opacity-60" style={{}} />
           </div>
 
           <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-10 py-24 sm:py-28 md:py-32">
