@@ -351,7 +351,13 @@ export const StaggeredMenu = ({
 
   return (
     <div
-      className={`sm-scope sm-scope-mobile-bar z-40 ${isFixed ? 'fixed top-0 left-0 w-screen h-screen overflow-hidden' : 'w-full h-full'}`}
+      className={`sm-scope sm-scope-mobile-bar z-40 ${
+        isFixed
+          ? open
+            ? 'fixed top-0 left-0 w-screen h-screen overflow-hidden'
+            : 'fixed top-0 left-0 w-screen min-h-[72px]'
+          : 'w-full h-full'
+      }`}
     >
       <div
         className={
