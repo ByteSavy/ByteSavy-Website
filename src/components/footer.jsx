@@ -340,78 +340,36 @@ export default function Footer() {
             <Link href="#hero" aria-label="ByteSavy home">
               <img src="/main-logo.png" alt={company?.brand_name || 'ByteSavy'} className="bs-footer-logo" />
             </Link>
-            <div className="bs-store-badges">
-              <a href="#" id="footer-appstore" className="bs-store-badge" aria-label="Download on the App Store">
-                <div className="bs-badge-inner">
-                  <span className="bs-badge-icon">
-                    <img
-                      src="/badges/app-store-icon.svg"
-                      alt="Apple App Store"
-                      className="h-5 w-5"
-                    />
-                  </span>
-                  <div>
-                    <span className="bs-badge-sub">Download on the</span>
-                    <span className="bs-badge-main">App Store</span>
-                  </div>
-                </div>
-              </a>
-              <a href="#" id="footer-playstore" className="bs-store-badge" aria-label="Get it on Google Play">
-                <div className="bs-badge-inner">
-                  <span className="bs-badge-icon">
-                    <img
-                      src="/badges/google-play-icon.svg"
-                      alt="Google Play"
-                      className="h-5 w-5"
-                    />
-                  </span>
-                  <div>
-                    <span className="bs-badge-sub">Get it on</span>
-                    <span className="bs-badge-main">Google Play</span>
-                  </div>
-                </div>
-              </a>
-            </div>
           </div>
 
-          {/* Link columns */}
+          {/* Link columns – only real sections/links */}
           <div className="bs-footer-cols">
             <div className="bs-footer-col">
-              <p className="bs-footer-col-title">What we do</p>
+              <p className="bs-footer-col-title">Navigate</p>
               <ul className="bs-footer-col-list">
-                <li><Link href="#services">GIS Development</Link></li>
-                <li><Link href="#services">AI Analytics</Link></li>
-                <li><Link href="#services">Remote Sensing</Link></li>
-                <li><Link href="#services">Consulting</Link></li>
-              </ul>
-            </div>
-            <div className="bs-footer-col">
-              <p className="bs-footer-col-title">Use ByteSavy</p>
-              <ul className="bs-footer-col-list">
-                <li><Link href="#hero">Web App</Link></li>
-                <li><a href="#">Android</a></li>
-                <li><a href="#">iPhone</a></li>
-                <li><a href="#">Desktop</a></li>
-              </ul>
-            </div>
-            <div className="bs-footer-col">
-              <p className="bs-footer-col-title">About</p>
-              <ul className="bs-footer-col-list">
-                <li><Link href="#hero">Blog</Link></li>
-                <li><Link href="#hero">Meet the Team</Link></li>
+                <li><Link href="#hero">Home</Link></li>
+                <li><Link href="#services">Services</Link></li>
+                <li><Link href="#projects">Projects</Link></li>
                 <li><Link href="#contact-us">Contact Us</Link></li>
               </ul>
             </div>
             <div className="bs-footer-col">
-              <p className="bs-footer-col-title">Social Media</p>
+              <p className="bs-footer-col-title">Visit</p>
               <ul className="bs-footer-col-list">
-                <li>
-                  <a href={contact?.website} target="_blank" rel="noopener noreferrer">
-                    LinkedIn
-                  </a>
-                </li>
-                <li><a href="#">Twitter / X</a></li>
-                <li><a href="#">GitHub</a></li>
+                <li><Link href="#location">Location</Link></li>
+                <li><Link href="#faqs">FAQs</Link></li>
+              </ul>
+            </div>
+            <div className="bs-footer-col">
+              <p className="bs-footer-col-title">Online</p>
+              <ul className="bs-footer-col-list">
+                {contact?.website && (
+                  <li>
+                    <a href={contact.website} target="_blank" rel="noopener noreferrer">
+                      Website
+                    </a>
+                  </li>
+                )}
               </ul>
             </div>
           </div>

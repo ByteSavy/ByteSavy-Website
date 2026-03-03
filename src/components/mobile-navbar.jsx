@@ -566,21 +566,18 @@ export const StaggeredMenu = ({
 .sm-scope .sm-panel-item:active { opacity: 0.85; }
 .sm-scope .sm-panel-list[data-numbering] { counter-reset: smItem; }
 .sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after { counter-increment: smItem; content: counter(smItem, decimal-leading-zero); position: absolute; top: 0.1em; right: 3.2em; font-size: 18px; font-weight: 400; color: var(--sm-accent, #ff0000); letter-spacing: 0; pointer-events: none; user-select: none; opacity: var(--sm-num-opacity, 0); }
-/* Mobile: white nav bar - make logo and toggle dark so visible on white */
-.sm-scope.sm-scope-mobile-bar .sm-logo-img { filter: brightness(0); }
+/* Mobile: white nav bar */
 .sm-scope.sm-scope-mobile-bar .sm-toggle { color: #0A1A33 !important; }
-.sm-scope.sm-scope-mobile-bar.staggered-menu-wrapper[data-open] .sm-logo-img { filter: invert(100%); }
 @media (min-width: 768px) {
   .sm-scope .sm-mobile-nav-bar { display: none; }
-  .sm-scope.sm-scope-mobile-bar .sm-logo-img { filter: none; }
   .sm-scope.sm-scope-mobile-bar .sm-toggle { color: inherit !important; }
 }
 /* Mobile: hide the right-side prelayers when menu is closed to avoid blue strip overflow */
 @media (max-width: 767px) {
   .sm-scope .staggered-menu-wrapper:not([data-open]) .sm-prelayers { display: none; }
 }
-@media (max-width: 1024px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } .sm-scope .staggered-menu-wrapper[data-open] .sm-logo-img { filter: invert(100%); } .sm-scope .sm-panel-item { font-size: 2.5rem; } }
-@media (max-width: 640px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } .sm-scope .staggered-menu-wrapper[data-open] .sm-logo-img { filter: invert(100%); } .sm-scope .sm-panel-item { font-size: 1.75rem; padding-right: 1rem; } .sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after { font-size: 14px; right: 0.5rem; } }
+@media (max-width: 1024px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } .sm-scope .sm-panel-item { font-size: 2.5rem; } }
+@media (max-width: 640px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } .sm-scope .sm-panel-item { font-size: 1.75rem; padding-right: 1rem; } .sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after { font-size: 14px; right: 0.5rem; } }
       `}</style>
     </div>
   );

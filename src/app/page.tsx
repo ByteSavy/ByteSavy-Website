@@ -297,7 +297,7 @@ export default function CartoInspiredPage() {
 
       <main>
         {/* Hero: Aurora + planet image on the right */}
-        <section className="relative overflow-hidden bg-white">
+        <section id="hero" className="relative overflow-hidden bg-white">
           <div className="absolute inset-0 z-0">
             <Aurora color={colors.primary} className="w-full h-full opacity-60" style={{}} />
           </div>
@@ -414,7 +414,7 @@ export default function CartoInspiredPage() {
  
  
   {/* Capabilities: merged white bg, blue text, Framer4 on the right */}
-  <section className="bg-white">
+  <section id="capabilities" className="bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10 py-16 sm:py-20">
             <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] items-center">
               <div className="space-y-4 max-w-xl">
@@ -478,7 +478,7 @@ export default function CartoInspiredPage() {
        
        
         {/* Services: carousel + GeoAI stack icon cloud */}
-        <section className="bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-10">
+        <section id="services" className="bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-10">
           <div className="max-w-6xl mx-auto grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)] items-start">
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-3 max-w-xl">
@@ -513,7 +513,7 @@ export default function CartoInspiredPage() {
                 </p>
                 <div className="mt-3">
                   <a
-                    href="#contact"
+                    href="#contact-us"
                     className="inline-flex items-center justify-center rounded-full bg-[#185BCE] px-4 py-2 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#1448a6] transition-colors"
                   >
                     Plan a map project
@@ -577,7 +577,7 @@ export default function CartoInspiredPage() {
                 turn them into spatial experiences your users actually enjoy.
               </p>
               <a
-                href="#contact"
+                href="#contact-us"
                 className="inline-flex items-center justify-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-[#185BCE] shadow-[0_16px_40px_rgba(15,23,42,0.6)] hover:bg-slate-100 transition-colors"
               >
                 Talk about a project
