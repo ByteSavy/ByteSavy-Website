@@ -17,23 +17,23 @@
 }
 
 .framer6-stage .framer6-intro {
-  min-height: 100vh;
-  height: 100vh;
+  min-height: 0;
+  height: auto;
 }
 
 /* Intro */
 .framer6-intro {
   position: relative;
-  padding: 6vw;
+  padding: 2rem 6vw 2.5rem;
   background: white;
   overflow: hidden;
 }
 
 .framer6-intro__content {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
   z-index: 1;
   text-align: center;
 }

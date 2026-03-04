@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import SmoothScrollWrapper from "@/components/SmoothScrollWrapper";
 
 export const metadata: Metadata = {
   title: "ByteSavy | Code. Map. Innovate.",
@@ -23,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="touch-pan-y">
       <body className="antialiased min-w-0 overflow-x-hidden">
-        {children}
+        <SmoothScrollWrapper>{children}</SmoothScrollWrapper>
       </body>
     </html>
   );
