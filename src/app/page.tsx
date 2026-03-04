@@ -301,8 +301,11 @@ export default function CartoInspiredPage() {
       />
 
       <main>
-        {/* Hero: Aurora + planet image on the right */}
-        <section id="hero" className="relative overflow-hidden bg-[#0A1A33]">
+        {/* Hero: exactly one viewport height (minus navbar), services strip not included */}
+        <section
+          id="hero"
+          className="relative flex min-h-[calc(100dvh-64px)] h-[calc(100dvh-64px)] max-h-[calc(100dvh-64px)] overflow-hidden bg-[#0A1A33]"
+        >
           <div className="absolute inset-0 z-0">
             <Aurora color={colors.primary} className="w-full h-full opacity-60" style={{}} />
           </div>
@@ -315,8 +318,8 @@ export default function CartoInspiredPage() {
             />
           </div>
 
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-5 lg:px-7 pt-10 pb-24 sm:pt-12 sm:pb-28 md:pt-14 md:pb-32">
-            <div className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] items-center">
+          <div className="relative z-10 flex w-full max-w-7xl flex-1 items-center mx-auto px-4 sm:px-5 lg:px-7 py-10 md:py-14">
+            <div className="grid w-full gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] items-center">
               <div className="flex flex-col gap-6">
                
 
