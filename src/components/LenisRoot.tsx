@@ -12,7 +12,6 @@ export default function LenisRoot({ children }: LenisRootProps) {
     const lenis = new Lenis({
       lerp: 0.1,
       smoothWheel: true,
-      smoothTouch: false,
     });
 
     let frameId: number;
