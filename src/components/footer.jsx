@@ -41,6 +41,8 @@ export default function Footer() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   const handleFaqToggle = (idx) => {
     setOpenFaq(openFaq === idx ? null : idx);
@@ -50,11 +52,30 @@ export default function Footer() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3500);
-    setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '' });
+    if (submitting) return;
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data?.ok === false) {
+        throw new Error(data?.error || 'Failed to send message');
+      }
+      setSubmitted(true);
+      setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '' });
+      setTimeout(() => setSubmitted(false), 3500);
+    } catch (err) {
+      console.error('[Footer] contact submit failed', err);
+      setSubmitError('Something went wrong sending your message. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const footerLinks = navMenuItems?.length
@@ -99,25 +120,17 @@ export default function Footer() {
 
               <div className="bs-contact-categories">
                 <div className="bs-contact-category">
-                  <p className="bs-cat-title">Customer Support</p>
+                  <p className="bs-cat-title">Project & sales enquiries</p>
                   <p className="bs-cat-desc">
-                    Our team is available around the clock to address any concerns or queries you
-                    may have.
+                    Use the form or email us and we&apos;ll get back to you as soon as we can,
+                    typically within 1–2 business days.
                   </p>
                 </div>
                 <div className="bs-contact-category">
-                  <p className="bs-cat-title">Feedback & Suggestions</p>
+                  <p className="bs-cat-title">General questions</p>
                   <p className="bs-cat-desc">
-                    We value your feedback and are continuously working to improve ByteSavy.
-                  </p>
-                </div>
-                <div className="bs-contact-category">
-                  <p className="bs-cat-title">Media Inquiries</p>
-                  <p className="bs-cat-desc">
-                    For media-related questions, please contact us at{' '}
-                    <a href="mailto:media@bytesavy.tech" className="bs-cat-link">
-                      media@bytesavy.tech
-                    </a>
+                    Not sure where to start? Send a short note and we&apos;ll help you figure out
+                    the best way to work together.
                   </p>
                 </div>
               </div>
@@ -197,8 +210,16 @@ export default function Footer() {
                         required
                       />
                     </div>
-                    <button id="contact-submit" type="submit" className="bs-submit-btn">
-                      Submit
+                    {submitError && (
+                      <p className="bs-form-error">{submitError}</p>
+                    )}
+                    <button
+                      id="contact-submit"
+                      type="submit"
+                      className="bs-submit-btn"
+                      disabled={submitting}
+                    >
+                      {submitting ? 'Sending…' : 'Submit'}
                     </button>
                     <p className="bs-form-legal">
                       By contacting us, you agree to our{' '}
@@ -225,9 +246,9 @@ export default function Footer() {
             {/* Map embed */}
             <div className="bs-map-wrap">
               <iframe
-                title="ByteSavy HQ"
+                title="ByteSavy – Islamabad"
                 className="bs-map-iframe"
-                src="https://maps.google.com/maps?q=NSTP+NUST+Islamabad+Pakistan&t=m&z=14&output=embed&iwloc=near"
+                src="https://maps.google.com/maps?q=Islamabad+Pakistan&t=m&z=12&output=embed&iwloc=near"
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -242,14 +263,11 @@ export default function Footer() {
                 <p className="bs-location-block-title">Headquarters</p>
                 <p className="bs-location-block-name">{company?.brand_name}</p>
                 <p className="bs-location-block-addr">
-                  {location?.headquarters?.address_line}
-                  <br />
-                  {location?.headquarters?.city}, {location?.headquarters?.country}{' '}
-                  {location?.headquarters?.postal_code}
+                  Islamabad, Pakistan
                 </p>
               </div>
               <a
-                href="https://maps.google.com/?q=NSTP+NUST+Islamabad+Pakistan"
+                href="https://maps.google.com/?q=Islamabad+Pakistan"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bs-map-link"

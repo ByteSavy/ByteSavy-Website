@@ -301,10 +301,12 @@ export default function CartoInspiredPage() {
       />
 
       <main>
-        {/* Hero: exactly one viewport height (minus navbar), services strip not included */}
+        {/* Hero + services strip stacked as layers (services strip not included in initial full-height) */}
+        <div className="relative">
+        {/* Hero: exactly one viewport height (minus navbar) */}
         <section
           id="hero"
-          className="relative flex min-h-[calc(100dvh-64px)] h-[calc(100dvh-64px)] max-h-[calc(100dvh-64px)] overflow-hidden bg-[#0A1A33]"
+          className="relative flex min-h-[calc(100dvh-64px)] h-[calc(100dvh-64px)] max-h-[calc(100dvh-64px)] overflow-hidden bg-[#0A1A33] sticky top-[64px] z-[1]"
         >
           <div className="absolute inset-0 z-0">
             <Aurora color={colors.primary} className="w-full h-full opacity-60" style={{}} />
@@ -363,8 +365,8 @@ export default function CartoInspiredPage() {
           </div>
         </section>
 
-        {/* Services strip: What we help teams ship */}
-        <section className="relative bg-[#0A1A33]">
+        {/* Services strip: What we help teams ship (stacks over hero on scroll) */}
+        <section className="relative bg-[#0A1A33] sticky top-[64px] z-[2]">
           <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-7 pb-4 sm:pb-6">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 rounded-2xl bg-white/5 border border-white/10 px-5 sm:px-7 py-6 sm:py-7">
               <div className="max-w-xl">
@@ -392,6 +394,7 @@ export default function CartoInspiredPage() {
             </div>
           </div>
         </section>
+        </div>
 
         {/* How we work: centered copy, then full-width video */}
         <section className="bg-white">
@@ -416,7 +419,10 @@ export default function CartoInspiredPage() {
         </section>
 
         {/* STEP IN FUTURE with BYTESAVY - text above tab bar (not sticky) */}
-        <section id="step-in-future" className="bg-white py-16 sm:py-20 md:py-24 flex flex-col items-center justify-center text-center">
+        <section
+          id="step-in-future"
+          className="bg-white py-16 sm:py-20 md:py-24 flex flex-col items-center justify-center text-center"
+        >
           <div className="max-w-6xl mx-auto px-4 sm:px-5 lg:px-7">
             <p
               className="text-xl sm:text-2xl md:text-3xl mb-2 md:mb-3 font-medium italic tracking-tight"
@@ -482,152 +488,151 @@ export default function CartoInspiredPage() {
             </div>
           </div>
 
-        {/* Services: carousel + GeoAI stack icon cloud */}
-        <section id="services" className="bg-[#0A1A33] py-16 sm:py-20 px-4 sm:px-5 lg:px-7">
-          <div className="max-w-7xl mx-auto grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)] items-start">
-            <div className="flex flex-col gap-8">
-              <div className="flex flex-col gap-3 max-w-xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#27E3FF]">
-                  Services
-                </p>
-                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#27E3FF]">
-                  <TypingText
-                    text="GeoAI, maps, and spatial UX in one place."
-                    className="text-[#27E3FF]"
-                    speed={45}
-                  />
-                </h2>
-                <div className="text-sm sm:text-base font-medium">
-                  <span className="text-white">We specialise in </span>
-                  <RotatingText
-                    texts={[
-                      'automatic building footprints',
-                      'coverage & serviceability maps',
-                      'real-time spatial dashboards',
-                    ]}
-                    rotationInterval={2200}
-                    mainClassName="inline text-[#27E3FF]"
-                    elementLevelClassName="inline-block"
-                  />
+          {/* Services, Capabilities, Projects – normal scroll (only tab bar is sticky) */}
+          <div className="relative space-y-16">
+            {/* Services: carousel + GeoAI stack icon cloud */}
+            <section
+              id="services"
+              className="bg-[#0A1A33] py-16 sm:py-20 px-4 sm:px-5 lg:px-7"
+            >
+              <div className="max-w-7xl mx-auto grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)] items-start">
+                <div className="flex flex-col gap-8">
+                  <div className="flex flex-col gap-3 max-w-xl">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#27E3FF]">
+                      Services
+                    </p>
+                    <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#27E3FF]">
+                      <TypingText
+                        text="GeoAI, maps, and spatial UX in one place."
+                        className="text-[#27E3FF]"
+                        speed={45}
+                      />
+                    </h2>
+                    <div className="text-sm sm:text-base font-medium">
+                      <span className="text-white">We specialise in </span>
+                      <RotatingText
+                        texts={[
+                          'automatic building footprints',
+                          'coverage & serviceability maps',
+                          'real-time spatial dashboards',
+                        ]}
+                        rotationInterval={2200}
+                        mainClassName="inline text-[#27E3FF]"
+                        elementLevelClassName="inline-block"
+                      />
+                    </div>
+                    <p className="text-sm sm:text-base text-white/90 mt-2">
+                      From raw satellite pixels to production-ready apps, we handle the GeoAI, the data
+                      plumbing, and the interfaces—so your users just see a fast, beautiful map. The same
+                      team that designs your experience also builds the stack, so there&apos;s no gap
+                      between what you imagine and what ships.
+                    </p>
+                    <div className="mt-3">
+                      <a
+                        href="#contact-us"
+                        className="inline-flex items-center justify-center rounded-full bg-[#185BCE] px-4 py-2 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#1448a6] transition-colors"
+                      >
+                        Plan a map project
+                      </a>
+                    </div>
+                  </div>
+                  <FlowingMenu />
                 </div>
-                <p className="text-sm sm:text-base text-white/90 mt-2">
-                  From raw satellite pixels to production-ready apps, we handle the GeoAI, the data
-                  plumbing, and the interfaces—so your users just see a fast, beautiful map. The same
-                  team that designs your experience also builds the stack, so there&apos;s no gap
-                  between what you imagine and what ships.
-                </p>
-                <div className="mt-3">
-                  <a
-                    href="#contact-us"
-                    className="inline-flex items-center justify-center rounded-full bg-[#185BCE] px-4 py-2 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-[#1448a6] transition-colors"
-                  >
-                    Plan a map project
-                  </a>
-                </div>
-              </div>
-              <FlowingMenu />
-            </div>
 
-            {/* GeoAI & web stack icon cloud */}
-            <aside className="p-5 sm:p-6 flex flex-col gap-4 lg:max-w-xl w-full">
-              <div className="mt-1">
-                <IconCloud
-                  iconSlugs={[
-                    'react',
-                    'nextdotjs',
-                    'tailwindcss',
-                    'typescript',
-                    'nodedotjs',
-                    'amazonaws',
-                    'googlecloud',
-                    'microsoftazure',
-                    'postgresql',
-                    'mongodb',
-                    'firebase',
-                    'mapbox',
-                    'openstreetmap',
-                    'python',
-                    'pytorch',
-                    'tensorflow',
-                  ]}
-                />
+                {/* GeoAI & web stack icon cloud */}
+                <aside className="p-5 sm:p-6 flex flex-col gap-4 lg:max-w-xl w-full">
+                  <div className="mt-1">
+                    <IconCloud
+                      iconSlugs={[
+                        'react',
+                        'nextdotjs',
+                        'tailwindcss',
+                        'typescript',
+                        'nodedotjs',
+                        'amazonaws',
+                        'googlecloud',
+                        'microsoftazure',
+                        'postgresql',
+                        'mongodb',
+                        'firebase',
+                        'mapbox',
+                        'openstreetmap',
+                        'python',
+                        'pytorch',
+                        'tensorflow',
+                      ]}
+                    />
+                  </div>
+                </aside>
               </div>
-            </aside>
-          </div>
-        </section>
+            </section>
  
-  {/* Capabilities: white bg, blue text, Framer4 on the right */}
-  <section id="capabilities" className="bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-7 py-16 sm:py-20">
-            <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] items-center">
-              <div className="space-y-4 max-w-xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#185BCE]">
-                  Capabilities
-                </p>
-                {(() => {
-                  const safeIndex =
-                    ((activeCapabilityIndex % CAPABILITIES_COPY.length) + CAPABILITIES_COPY.length) %
-                    CAPABILITIES_COPY.length;
-                  const current = CAPABILITIES_COPY[safeIndex];
-                  return (
-                    <>
-                      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#185BCE]">
-                        {current.title}
-                      </h2>
-                      <p className="text-base sm:text-lg text-slate-700">
-                        {current.body}
-                      </p>
-                      <div className="flex flex-wrap gap-2 pt-2">
-                        {CAPABILITIES_COPY.map((item, index) => (
-                          <button
-                            key={item.title}
-                            type="button"
-                            onClick={() => {
-                              if (typeof window !== 'undefined' && (window as any).dispatchEvent) {
-                                try {
-                                  window.dispatchEvent(
-                                    new CustomEvent('framer4:setActiveSlide', {
-                                      detail: { index },
-                                    })
-                                  );
-                                } catch {
-                                  // ignore
-                                }
-                              }
-                            }}
-                            className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
-                              index === safeIndex
-                                ? 'bg-[#185BCE] border-[#185BCE] text-white'
-                                : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
-                            }`}
-                          >
-                            {item.title}
-                          </button>
-                        ))}
-                      </div>
-                    </>
-                  );
-                })()}
+            {/* Capabilities: white bg, blue text, Framer4 on the right */}
+            <section
+              id="capabilities"
+              className="bg-white py-16 sm:py-20 px-4 sm:px-5 lg:px-7"
+            >
+              <div className="max-w-7xl mx-auto">
+                <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] items-center">
+                  <div className="space-y-4 max-w-xl">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#185BCE]">
+                      Capabilities
+                    </p>
+                    {(() => {
+                      const safeIndex =
+                        ((activeCapabilityIndex % CAPABILITIES_COPY.length) + CAPABILITIES_COPY.length) %
+                        CAPABILITIES_COPY.length;
+                      const current = CAPABILITIES_COPY[safeIndex];
+                      return (
+                        <>
+                          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#185BCE]">
+                            {current.title}
+                          </h2>
+                          <p className="text-base sm:text-lg text-slate-700">
+                            {current.body}
+                          </p>
+                          <div className="flex flex-wrap gap-2 pt-2">
+                            {CAPABILITIES_COPY.map((item, index) => (
+                              <button
+                                key={item.title}
+                                type="button"
+                                onClick={() => {
+                                  if (typeof window !== 'undefined' && (window as any).dispatchEvent) {
+                                    try {
+                                      window.dispatchEvent(
+                                        new CustomEvent('framer4:setActiveSlide', {
+                                          detail: { index },
+                                        })
+                                      );
+                                    } catch {
+                                      // ignore
+                                    }
+                                  }
+                                }}
+                                className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
+                                  index === safeIndex
+                                    ? 'bg-[#185BCE] border-[#185BCE] text-white'
+                                    : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
+                                }`}
+                              >
+                                {item.title}
+                              </button>
+                            ))}
+                          </div>
+                        </>
+                      );
+                    })()}
+                  </div>
+                  <div className="relative min-w-0 overflow-hidden">
+                    <Framer4Section />
+                  </div>
+                </div>
               </div>
-              <div className="relative min-w-0 overflow-hidden">
-                <Framer4Section />
-              </div>
-            </div>
+            </section>
+       
+            {/* Projects, powered by company-projects.json */}
+            <ProjectsSection />
           </div>
-        </section>
-       
-       
-       
-       
-       
-        
-
-      
-
-       
-
-        {/* Projects, powered by company-projects.json */}
-        <ProjectsSection />
 
         {/* Simple CTA with animated text */}
         <section className="relative px-4 sm:px-5 lg:px-7 py-12 sm:py-16 bg-white">
@@ -645,13 +650,14 @@ export default function CartoInspiredPage() {
               </p>
               <a
                 href="#contact-us"
-                  className="inline-flex items-center justify-center rounded-full bg-[#185BCE] px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-90 transition-colors"
+                className="inline-flex items-center justify-center rounded-full bg-[#185BCE] px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-90 transition-colors"
               >
                 Talk about a project
               </a>
             </div>
           </div>
         </section>
+
         <Framer6Section />
         </div>
       </main>
