@@ -3,47 +3,73 @@ import { contact } from './company-data';
 
 export const navItems = [
   {
-    label: 'Services',
+    label: 'How we work',
     bgColor: colors.primary,
     textColor: colors.textLight,
     links: [
       {
-        label: 'View all services',
-        href: '#services',
-        ariaLabel: 'Scroll to services',
+        label: 'How we work',
+        href: '#how-we-work',
+        ariaLabel: 'Scroll to how we work section',
       },
     ],
   },
   {
-    label: 'Projects',
+    label: 'Our services',
     bgColor: colors.accent1,
     textColor: colors.darkBackground,
     links: [
       {
-        label: 'Explore projects',
-        href: '#projects',
-        ariaLabel: 'Scroll to projects',
+        label: 'Our services',
+        href: '#services',
+        ariaLabel: 'Scroll to services section',
       },
     ],
   },
   {
-    label: 'Contact',
+    label: 'Our work',
     bgColor: colors.accent2,
     textColor: colors.darkBackground,
     links: [
       {
-        label: 'Get in touch',
-        href: '#contact-us',
-        ariaLabel: 'Scroll to contact section',
+        label: 'Our work',
+        href: '#projects',
+        ariaLabel: 'Scroll to projects section',
+      },
+    ],
+  },
+  {
+    label: 'Map what’s next',
+    bgColor: colors.primary,
+    textColor: colors.textLight,
+    links: [
+      {
+        label: 'Map what’s next',
+        href: '#framer6',
+        ariaLabel: 'Scroll to Ready to map what’s next section',
+      },
+    ],
+  },
+  {
+    label: 'FAQs',
+    bgColor: colors.accent1,
+    textColor: colors.darkBackground,
+    links: [
+      {
+        label: 'FAQs',
+        href: '#faqs',
+        ariaLabel: 'Scroll to FAQs section',
       },
     ],
   },
 ];
 
 export const menuItems = [
-  { label: 'Services', link: '#services', ariaLabel: 'Go to services section' },
-  { label: 'Projects', link: '#projects', ariaLabel: 'Go to projects section' },
-  { label: 'Contact', link: '#contact-us', ariaLabel: 'Go to contact section' },
+  { label: 'How we work', link: '#how-we-work', ariaLabel: 'Go to how we work section' },
+  { label: 'Our services', link: '#services', ariaLabel: 'Go to services section' },
+  { label: 'Our work', link: '#projects', ariaLabel: 'Go to projects section' },
+  { label: 'Map what’s next', link: '#framer6', ariaLabel: 'Go to Ready to map what’s next section' },
+  { label: 'FAQs', link: '#faqs', ariaLabel: 'Go to FAQs section' },
 ];
 
 export const socialItems = contact?.website

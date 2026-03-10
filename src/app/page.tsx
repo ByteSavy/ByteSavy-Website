@@ -4,7 +4,7 @@ import { useEffect, useState, useRef, useMemo, type ComponentType } from 'react'
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { colors } from '@/lib/theme';
-import { navItems } from '@/lib/nav-config';
+import { navItems, menuItems, socialItems } from '@/lib/nav-config';
 import { company, services, technicalCapabilities } from '@/lib/company-data';
 import { projectSlugFromTitle } from '@/lib/slug';
 import IconCloud from '@/components/icon-cloud';
@@ -41,6 +41,13 @@ type ProjectsJson = {
 };
 
 const CardNav = dynamic(() => import('@/components/navbar'), { ssr: false });
+const StaggeredMenu = dynamic(
+  () =>
+    import('@/components/mobile-navbar').then((mod) => ({
+      default: mod.StaggeredMenu as ComponentType<any>,
+    })),
+  { ssr: false }
+);
 const RotatingText = dynamic<RotatingTextProps>(
   () => import('@/components/rotating-text').then((mod) => mod.default as ComponentType<RotatingTextProps>),
   { ssr: false }
@@ -241,14 +248,14 @@ function ProjectsSection() {
 const SECTION_NAV_ITEMS = [
   { id: 'services', label: 'Services', href: '#services' },
   { id: 'capabilities', label: 'Capabilities', href: '#capabilities' },
-  { id: 'projects', label: 'Projects', href: '#projects' },
-  { id: 'contact', label: 'Contact', href: '#contact-us' },
+  { id: 'projects', label: 'Case studies', href: '#projects' },
 ] as const;
 type SectionNavId = (typeof SECTION_NAV_ITEMS)[number]['id'];
 
 export default function CartoInspiredPage() {
   const [activeCapabilityIndex, setActiveCapabilityIndex] = useState(0);
   const [sectionNavActive, setSectionNavActive] = useState<SectionNavId>('services');
+  const [showSectionNav, setShowSectionNav] = useState(false);
 
   useEffect(() => {
     const handler = (e: any) => {
@@ -266,21 +273,45 @@ export default function CartoInspiredPage() {
   }, []);
 
   useEffect(() => {
-    const sectionIds: SectionNavId[] = ['services', 'capabilities', 'projects', 'contact'];
-    const idToElId = (id: SectionNavId) => (id === 'contact' ? 'contact-us' : id);
-    const updateActive = () => {
+    const sectionIds: SectionNavId[] = ['services', 'capabilities', 'projects'];
+
+    const handleScroll = () => {
       if (typeof window === 'undefined') return;
+
+      // Update active tab based on scroll position
       const triggerLine = 120;
       let active: SectionNavId = 'services';
       sectionIds.forEach((id) => {
-        const el = document.getElementById(idToElId(id));
+        const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= triggerLine) active = id;
       });
       setSectionNavActive(active);
+
+      // Show bottom tab bar only while services/capabilities/projects band is in view
+      const servicesEl = document.getElementById('services');
+      const projectsEl = document.getElementById('projects');
+      if (!servicesEl || !projectsEl) {
+        setShowSectionNav(false);
+        return;
+      }
+
+      const servicesRect = servicesEl.getBoundingClientRect();
+      const projectsRect = projectsEl.getBoundingClientRect();
+      const navbarBottom = 64; // height of top nav
+      const firstSectionTrigger = navbarBottom + 16;
+
+      const starts = servicesRect.top <= firstSectionTrigger;
+      const notPastLast = projectsRect.bottom >= 120;
+      setShowSectionNav(starts && notPastLast);
     };
-    updateActive();
-    window.addEventListener('scroll', updateActive, { passive: true });
-    return () => window.removeEventListener('scroll', updateActive);
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   const handleSectionNavClick = (href: string) => {
@@ -290,23 +321,42 @@ export default function CartoInspiredPage() {
 
   return (
     <div className="min-h-screen w-full min-w-0 max-w-[100vw] bg-[#0A1A33] text-white overflow-x-clip">
-      <CardNav
-        logo="/main-logo.png"
-        logoAlt={company.brand_name}
-        items={navItems}
-        baseColor="#0A1A33"
-        menuColor="#ffffff"
-        buttonBgColor="#27E3FF"
-        buttonTextColor="#0A1A33"
-      />
+      <header className="sticky top-0 z-[80] bg-[#0A1A33]/95 backdrop-blur">
+        <div className="hidden md:block">
+          <CardNav
+            logo="/main-logo.png"
+            logoAlt={company.brand_name}
+            items={navItems}
+            baseColor="#0A1A33"
+            menuColor="#ffffff"
+            buttonBgColor="#27E3FF"
+            buttonTextColor="#0A1A33"
+          />
+        </div>
+        <div className="md:hidden">
+          <StaggeredMenu
+            position="right"
+            colors={['#0A1A33', colors.accent2, colors.primary]}
+            items={menuItems}
+            socialItems={socialItems}
+            displaySocials={socialItems.length > 0}
+            displayItemNumbering={false}
+            isFixed
+            accentColor={colors.primary}
+            logoUrl="/main-logo.png"
+            menuButtonColor="#ffffff"
+            openMenuButtonColor="#ffffff"
+          />
+        </div>
+      </header>
 
-      <main>
+      <main className="pt-[72px] md:pt-0">
         {/* Hero + services strip stacked as layers (services strip not included in initial full-height) */}
         <div className="relative">
-        {/* Hero: exactly one viewport height (minus navbar) */}
+        {/* Hero: desktop uses sticky layering, mobile is normal flow */}
         <section
           id="hero"
-          className="relative flex min-h-[calc(100dvh-64px)] h-[calc(100dvh-64px)] max-h-[calc(100dvh-64px)] overflow-hidden bg-[#0A1A33] sticky top-[64px] z-[1]"
+          className="relative flex overflow-hidden bg-[#0A1A33] md:min-h-[calc(100dvh-64px)] md:h-[calc(100dvh-64px)] md:max-h-[calc(100dvh-64px)] md:sticky md:top-[64px] z-[1]"
         >
           <div className="absolute inset-0 z-0">
             <Aurora color={colors.primary} className="w-full h-full opacity-60" style={{}} />
@@ -355,7 +405,7 @@ export default function CartoInspiredPage() {
 
 
         {/* Mobile: show the animated planet gif below the hero text instead of behind it */}
-        <section className="md:hidden bg-[#0A1A33] px-4 pb-6">
+        <section className="md:hidden bg-[#0A1A33] px-4 pb-8 pt-2">
           <div className="max-w-7xl mx-auto">
             <img
               src="/projects/asset1.gif"
@@ -365,8 +415,8 @@ export default function CartoInspiredPage() {
           </div>
         </section>
 
-        {/* Services strip: What we help teams ship (stacks over hero on scroll) */}
-        <section className="relative bg-[#0A1A33] sticky top-[64px] z-[2]">
+        {/* Services strip: stacked over hero only on desktop, normal flow on mobile */}
+        <section className="relative bg-[#0A1A33] md:sticky md:top-[64px] z-[2]">
           <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-7 pb-4 sm:pb-6">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 rounded-2xl bg-white/5 border border-white/10 px-5 sm:px-7 py-6 sm:py-7">
               <div className="max-w-xl">
@@ -390,6 +440,15 @@ export default function CartoInspiredPage() {
                 <span className="inline-flex items-center rounded-full bg-white/10 border border-white/20 px-3 py-1.5 text-[11px] font-medium text-white">
                   Data products
                 </span>
+                <span className="inline-flex items-center rounded-full bg-white/10 border border-white/20 px-3 py-1.5 text-[11px] font-medium text-white">
+                  3D mapping
+                </span>
+                <span className="inline-flex items-center rounded-full bg-white/10 border border-white/20 px-3 py-1.5 text-[11px] font-medium text-white">
+                  CesiumJS experiences
+                </span>
+                <span className="inline-flex items-center rounded-full bg-white/10 border border-white/20 px-3 py-1.5 text-[11px] font-medium text-white">
+                  Spatial data platforms
+                </span>
               </div>
             </div>
           </div>
@@ -397,7 +456,7 @@ export default function CartoInspiredPage() {
         </div>
 
         {/* How we work: centered copy, then full-width video */}
-        <section className="bg-white">
+        <section id="how-we-work" className="bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-7 pt-8 sm:pt-10 pb-16 sm:pb-20 space-y-8">
             <div className="space-y-4 max-w-3xl mx-auto text-center">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#185BCE]">
@@ -459,12 +518,15 @@ export default function CartoInspiredPage() {
           </div>
         </section>
 
-        {/* Wrapper so sticky tab bar can stick while scrolling through sections below */}
+        {/* Wrapper so tab bar appears over sections below */}
         <div className="bg-white">
-          {/* Sticky tab bar only - sticks at top when scrolling */}
-          <div className="sticky top-[64px] z-[50] bg-white border-y border-slate-200 shadow-sm">
-            <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-7">
-              <nav className="flex flex-wrap items-center justify-center gap-1 sm:gap-2 py-3" role="tablist">
+          {/* Top-center fixed tab bar – only visible between services and projects */}
+          {showSectionNav && (
+            <div className="pointer-events-none fixed inset-x-0 top-[80px] z-[60] flex justify-center">
+              <nav
+                className="pointer-events-auto inline-flex items-center justify-center rounded-full bg-white/90 border border-slate-200/70 shadow-md px-1.5 py-1 backdrop-blur-md"
+                role="tablist"
+              >
                 {SECTION_NAV_ITEMS.map((item) => {
                   const isActive = sectionNavActive === item.id;
                   return (
@@ -474,10 +536,10 @@ export default function CartoInspiredPage() {
                       role="tab"
                       aria-selected={isActive}
                       onClick={() => handleSectionNavClick(item.href)}
-                      className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                      className={`relative rounded-full px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium transition-all ${
                         isActive
-                          ? 'bg-[#185BCE] text-white'
-                          : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                          ? 'bg-[#0A1A33] text-white shadow-sm'
+                          : 'text-slate-600/80 hover:text-slate-900 hover:bg-white/70'
                       }`}
                     >
                       {item.label}
@@ -486,8 +548,7 @@ export default function CartoInspiredPage() {
                 })}
               </nav>
             </div>
-          </div>
-
+          )}
           {/* Services, Capabilities, Projects – normal scroll (only tab bar is sticky) */}
           <div className="relative space-y-16">
             {/* Services: carousel + GeoAI stack icon cloud */}

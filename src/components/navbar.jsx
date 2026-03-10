@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 const SCROLL_THRESHOLD = 20;
 const NAV_HEIGHT = 64;
-const NAV_TOP_MARGIN = 0; // no gap at top
+const NAV_TOP_MARGIN = 8; // extra gap below nav before content
 
 const CardNav = ({
   logo,
@@ -25,10 +25,12 @@ const CardNav = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = (items || []).slice(0, 3).map((item) => ({
+  const navLinks = (items || []).map((item) => ({
     label: item.label,
     href: item.links?.[0]?.href || '#'
   }));
+
+  const isDarkNav = (baseColor || '').toLowerCase() === '#0a1a33';
 
   return (
     <>
@@ -37,7 +39,7 @@ const CardNav = ({
         style={{ height: NAV_HEIGHT + NAV_TOP_MARGIN }}
       >
         <nav
-          className="flex h-16 w-full items-center justify-between gap-4 px-4 sm:px-6 md:px-8 transition-all duration-300"
+          className="flex h-16 w-full items-center justify-start gap-4 px-4 sm:px-6 md:px-8 pt-4 transition-all duration-300"
           style={{
             backgroundColor: scrolled ? baseColor : 'transparent',
             boxShadow: scrolled
@@ -49,7 +51,7 @@ const CardNav = ({
             <img src={logo} alt={logoAlt} className="h-9 brightness-0 invert" />
           </a>
 
-          <div className="flex items-center gap-6 sm:gap-8">
+          <div className="ml-auto flex items-center gap-5 sm:gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -64,8 +66,20 @@ const CardNav = ({
 
           <a
             href="#contact-us"
-            className="shrink-0 rounded-full px-4 py-2.5 text-sm font-semibold transition-opacity hover:opacity-90"
-            style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
+            className="shrink-0 rounded-full px-4 py-2.5 text-sm font-semibold border transition-colors hover:opacity-100"
+            style={
+              isDarkNav
+                ? {
+                    backgroundColor: 'transparent',
+                    color: '#ffffff',
+                    borderColor: '#ffffff'
+                  }
+                : {
+                    backgroundColor: buttonBgColor,
+                    color: buttonTextColor,
+                    borderColor: 'transparent'
+                  }
+            }
           >
             Contact us
           </a>
