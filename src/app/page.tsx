@@ -40,6 +40,22 @@ type ProjectsJson = {
   projects: Project[];
 };
 
+type Review = {
+  client_username: string;
+  country: string;
+  rating: number;
+  year_ago: number;
+  category: string;
+  duration: string;
+  repeat_client: boolean;
+  order_status: string;
+  review: string;
+};
+
+type ReviewsJson = {
+  reviews: Review[];
+};
+
 const CardNav = dynamic(() => import('@/components/navbar'), { ssr: false });
 const StaggeredMenu = dynamic(
   () =>
@@ -117,6 +133,16 @@ const CAPABILITIES_COPY = [
     body: 'Multi-layer earth views that combine terrain, climate and infrastructure so your team can zoom from globe to street with context intact.',
   },
 ];
+
+const REVIEW_AVATAR_USERNAMES = new Set<string>([
+  'mattiatalo',
+  'jackthompson4',
+  'joeprice77',
+  'santiagolest804',
+  'dorian_53',
+  'rahulamlekar',
+  'ogeidius',
+]);
 
 function ProjectsSection() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -240,6 +266,110 @@ function ProjectsSection() {
             </Link>
           </div>
         )}
+      </div>
+    </section>
+  );
+}
+
+function ReviewsSection() {
+  const [reviews, setReviews] = useState<Review[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/projects/Reviews/Reviews.json')
+      .then((res) => res.json())
+      .then((data: ReviewsJson) => {
+        if (cancelled) return;
+        const all = data.reviews || [];
+        const positive = all.filter(
+          (r) => r.rating >= 4.5 && r.order_status === 'completed'
+        );
+        const byUser = new Map<string, Review>();
+        positive.forEach((r) => {
+          const existing = byUser.get(r.client_username);
+          if (!existing || r.review.length > existing.review.length) {
+            byUser.set(r.client_username, r);
+          }
+        });
+        const selected = Array.from(byUser.values())
+          .sort((a, b) => (b.repeat_client ? 1 : 0) - (a.repeat_client ? 1 : 0) || b.rating - a.rating)
+          .slice(0, 6);
+        setReviews(selected);
+      })
+      .catch(() => {
+        if (!cancelled) setReviews([]);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (!reviews.length) return null;
+
+  return (
+    <section id="reviews" className="bg-white py-16 sm:py-20 px-4 sm:px-5 lg:px-7">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col items-start sm:items-center gap-3 mb-10 text-left sm:text-center">
+          <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[#185BCE]">
+            Testimonials
+          </p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+            Transformative client experiences.
+          </h2>
+          <p className="text-sm sm:text-base text-slate-600 max-w-2xl">
+            Teams across GIS, product, and data science ship faster with ByteSavy in the loop.
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-3">
+          {reviews.map((r) => {
+            const hasAvatar = REVIEW_AVATAR_USERNAMES.has(r.client_username);
+            const avatarSrc = hasAvatar
+              ? `/projects/Reviews/${r.client_username}.webp`
+              : null;
+            return (
+              <article
+                key={`${r.client_username}-${r.category}-${r.duration}`}
+                className="flex flex-col justify-between rounded-3xl bg-slate-50 border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow duration-200 p-5 sm:p-6"
+              >
+                <div className="flex-1 flex flex-col gap-4">
+                  <div className="text-slate-300 text-4xl leading-none">“</div>
+                  <p className="text-sm sm:text-base text-slate-800">
+                    {r.review}
+                  </p>
+                </div>
+                <div className="mt-5 flex items-center gap-3">
+                  {avatarSrc ? (
+                    <img
+                      src={avatarSrc}
+                      alt={r.client_username}
+                      className="h-10 w-10 sm:h-11 sm:w-11 rounded-full object-cover border border-slate-200"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="h-10 w-10 sm:h-11 sm:w-11 rounded-full bg-slate-900 text-white flex items-center justify-center text-xs font-semibold uppercase">
+                      {r.client_username.slice(0, 2)}
+                    </div>
+                  )}
+                  <div className="flex flex-col">
+                    <span className="text-sm font-semibold text-slate-900">
+                      @{r.client_username}
+                    </span>
+                    <span className="text-xs text-slate-500">
+                      {r.country} · {r.category}
+                    </span>
+                  </div>
+                  <div className="ml-auto flex flex-col items-end text-xs text-slate-500">
+                    <span className="font-semibold text-[#185BCE]">
+                      {r.rating.toFixed(1)} ★
+                    </span>
+                    {r.repeat_client && <span>Repeat client</span>}
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
@@ -694,6 +824,9 @@ export default function CartoInspiredPage() {
             {/* Projects, powered by company-projects.json */}
             <ProjectsSection />
           </div>
+
+        {/* Reviews / testimonials */}
+        <ReviewsSection />
 
         {/* Simple CTA with animated text */}
         <section className="relative px-4 sm:px-5 lg:px-7 py-12 sm:py-16 bg-white">

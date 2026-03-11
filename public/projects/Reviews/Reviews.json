@@ -1,0 +1,268 @@
+{
+    "reviews": [
+      {
+        "client_username": "mattiatalo",
+        "country": "Italy",
+        "rating": 4.7,
+        "year_ago": 1,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "11 days",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "An extremely skilled professional who fully understood the assigned tasks and delivered a project that exceeded expectations. Highly recommended."
+      },
+      {
+        "client_username": "wildpath",
+        "country": "United States",
+        "rating": 5,
+        "year_ago": 1,
+        "category": "Full Stack Web Applications",
+        "duration": "2 weeks",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Mapping with Mapbox."
+      },
+      {
+        "client_username": "jackthompson4",
+        "country": "United States",
+        "rating": 5,
+        "year_ago": 1,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "9 days",
+        "repeat_client": true,
+        "order_status": "completed",
+        "review": "Great experience again."
+      },
+      {
+        "client_username": "jackthompson4",
+        "country": "United States",
+        "rating": 5,
+        "year_ago": 1,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "6 days",
+        "repeat_client": true,
+        "order_status": "completed",
+        "review": "Bytesavy is a top-notch GIS professional company. Knowledgeable, efficient, and communicative. I've rehired him for multiple projects and highly recommend his services."
+      },
+      {
+        "client_username": "samzuckerman404",
+        "country": "United States",
+        "rating": 5,
+        "year_ago": 1,
+        "category": "Full Stack Web Applications",
+        "duration": "9 days",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Working with Bytesavy was a fantastic experience. Their code expertise and professionalism exceeded expectations and communication made the collaboration smooth."
+      },
+      {
+        "client_username": "nmdelled",
+        "country": "Canada",
+        "rating": 5,
+        "year_ago": 1,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "10 days",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Great work."
+      },
+      {
+        "client_username": "joeprice77",
+        "country": "United States",
+        "rating": 4.7,
+        "year_ago": 1,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "2 weeks",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Badar was an excellent developer to partner with. He understood the vision and translated requirements into a full implementation with great attention to detail."
+      },
+      {
+        "client_username": "santiagolest804",
+        "country": "Argentina",
+        "rating": 5,
+        "year_ago": 1,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "9 days",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Extremely professional, knowledgeable, and efficient. Delivered on time and exceeded expectations with great communication."
+      },
+      {
+        "client_username": "jackthompson4",
+        "country": "United States",
+        "rating": 5,
+        "year_ago": 1,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "3 weeks",
+        "repeat_client": true,
+        "order_status": "completed",
+        "review": "Badar built an excellent geocoding solution with a Python script and Google Sheets integration that streamlined our workflow."
+      },
+      {
+        "client_username": "dorian_53",
+        "country": "United States",
+        "rating": 5,
+        "year_ago": 1,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "2 weeks",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Impressive expertise and attention to detail while building a real-time API scraping system for wind and ocean current data."
+      },
+      {
+        "client_username": "amafive",
+        "country": "United States",
+        "rating": 1,
+        "year_ago": 1,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "2 weeks",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Seller is not proactive in communication and asked for additional payments for extra requests."
+      },
+      {
+        "client_username": "ogeidius",
+        "country": "United States",
+        "rating": 5,
+        "year_ago": 1,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "3 weeks",
+        "repeat_client": true,
+        "order_status": "completed",
+        "review": "Delivered top-notch data visualization work with excellent professionalism and attention to detail."
+      },
+      {
+        "client_username": "rapha3l7",
+        "country": "France",
+        "rating": 5,
+        "year_ago": 1,
+        "category": "Full Stack Web Applications",
+        "duration": "3 weeks",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Professional, responsive, and created a personalized geo map customization page in a clever and organized way."
+      },
+      {
+        "client_username": "filmfly",
+        "country": "United States",
+        "rating": 5,
+        "year_ago": 1,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "8 days",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Great job. Very thorough and asked the right questions."
+      },
+      {
+        "client_username": "robm80",
+        "country": "United Kingdom",
+        "rating": 5,
+        "year_ago": 1,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "1 day",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Went above and beyond to ensure the project was a correct fit before accepting the offer."
+      },
+      {
+        "client_username": "akshay_patil_26",
+        "country": "United States",
+        "rating": 5,
+        "year_ago": 1,
+        "category": "LLM & Platform Integration",
+        "duration": "3 weeks",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Amazing to work with. Strong development skills and deep understanding of LLM integration and platform systems."
+      },
+      {
+        "client_username": "rodrigors",
+        "country": "Brazil",
+        "rating": 4,
+        "year_ago": 1,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "9 weeks",
+        "repeat_client": false,
+        "order_status": "canceled",
+        "review": "Honest and committed to the project. Would work with him again."
+      },
+      {
+        "client_username": "avrahaml",
+        "country": "Israel",
+        "rating": 4.7,
+        "year_ago": 2,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "2 weeks",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Friendly, professional, and knowledgeable. A pleasure to work with."
+      },
+      {
+        "client_username": "rahulamlekar",
+        "country": "United States",
+        "rating": 5,
+        "year_ago": 2,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "6 weeks",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Built a website with map integration and handled requirement gathering very professionally."
+      },
+      {
+        "client_username": "kennedy0125",
+        "country": "Germany",
+        "rating": 4.7,
+        "year_ago": 2,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "11 days",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Maintained clear communication throughout development and delivered the final product on schedule."
+      },
+      {
+        "client_username": "ajnaphat",
+        "country": "Thailand",
+        "rating": 5,
+        "year_ago": 2,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "2 weeks",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Experienced React developer with deep understanding of client requirements."
+      },
+      {
+        "client_username": "memeena",
+        "country": "United States",
+        "rating": 5,
+        "year_ago": 2,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "11 days",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Fast and reliable React developer and GIS analyst who delivers on time."
+      },
+      {
+        "client_username": "carolilvento",
+        "country": "United States",
+        "rating": 5,
+        "year_ago": 2,
+        "category": "Geographic Information Systems (GIS)",
+        "duration": "3 days",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Very helpful and accessible in answering questions and completing the project successfully."
+      },
+      {
+        "client_username": "hohuynh",
+        "country": "United States",
+        "rating": 5,
+        "year_ago": 2,
+        "category": "Geographic Web Mapping",
+        "duration": "8 days",
+        "repeat_client": false,
+        "order_status": "completed",
+        "review": "Delivered an exceptional interactive React web map using Leaflet, Mapbox, and OpenLayers."
+      }
+    ]
+  }
