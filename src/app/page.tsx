@@ -359,12 +359,22 @@ function ReviewsSection() {
                       {r.country} · {r.category}
                     </span>
                   </div>
-                  <div className="ml-auto flex flex-col items-end text-xs text-slate-500">
-                    <span className="font-semibold text-[#185BCE]">
-                      {r.rating.toFixed(1)} ★
-                    </span>
-                    {r.repeat_client && <span>Repeat client</span>}
-                  </div>
+                    <div className="ml-auto flex flex-col items-end text-xs text-slate-500">
+                      <div className="flex items-center gap-0.5 text-amber-400 mb-0.5">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <span
+                            key={i}
+                            className={i < Math.round(r.rating) ? 'opacity-100' : 'opacity-30'}
+                          >
+                            ★
+                          </span>
+                        ))}
+                      </div>
+                      <span className="font-semibold text-[#185BCE]">
+                        {r.rating.toFixed(1)}
+                      </span>
+                      {r.repeat_client && <span>Repeat client</span>}
+                    </div>
                 </div>
               </article>
             );
@@ -379,6 +389,7 @@ const SECTION_NAV_ITEMS = [
   { id: 'services', label: 'Services', href: '#services' },
   { id: 'capabilities', label: 'Capabilities', href: '#capabilities' },
   { id: 'projects', label: 'Case studies', href: '#projects' },
+  { id: 'reviews', label: 'Reviews', href: '#reviews' },
 ] as const;
 type SectionNavId = (typeof SECTION_NAV_ITEMS)[number]['id'];
 
@@ -403,7 +414,7 @@ export default function CartoInspiredPage() {
   }, []);
 
   useEffect(() => {
-    const sectionIds: SectionNavId[] = ['services', 'capabilities', 'projects'];
+    const sectionIds: SectionNavId[] = ['services', 'capabilities', 'projects', 'reviews'];
 
     const handleScroll = () => {
       if (typeof window === 'undefined') return;
@@ -417,21 +428,22 @@ export default function CartoInspiredPage() {
       });
       setSectionNavActive(active);
 
-      // Show bottom tab bar only while services/capabilities/projects band is in view
+      // Show tab bar only while services/capabilities/projects/reviews band is in view
       const servicesEl = document.getElementById('services');
-      const projectsEl = document.getElementById('projects');
-      if (!servicesEl || !projectsEl) {
+      const lastSectionEl =
+        document.getElementById('reviews') || document.getElementById('projects');
+      if (!servicesEl || !lastSectionEl) {
         setShowSectionNav(false);
         return;
       }
 
       const servicesRect = servicesEl.getBoundingClientRect();
-      const projectsRect = projectsEl.getBoundingClientRect();
+      const lastRect = lastSectionEl.getBoundingClientRect();
       const navbarBottom = 64; // height of top nav
       const firstSectionTrigger = navbarBottom + 16;
 
       const starts = servicesRect.top <= firstSectionTrigger;
-      const notPastLast = projectsRect.bottom >= 120;
+      const notPastLast = lastRect.bottom >= 120;
       setShowSectionNav(starts && notPastLast);
     };
 
